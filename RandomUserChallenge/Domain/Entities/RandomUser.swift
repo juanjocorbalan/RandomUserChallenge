@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct RandomUser {
-    let identifier: String
+struct RandomUser: Identifiable {
+    let id: String
     let firstName: String
     let lastName: String
     let email: String

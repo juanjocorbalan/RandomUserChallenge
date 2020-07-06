@@ -25,9 +25,24 @@ class RandomUserListCoordinator: Coordinator<Void> {
         let viewController: RandomUserListViewController = dependencies.resolve()
         let navigationController = UINavigationController(rootViewController: viewController)
         
+        viewController.viewModel.showUser
+            .flatMap { [weak self] user -> Observable<Void> in
+                guard let strongSelf = self else { return Observable.empty() }
+                return strongSelf.showUser(user, in: navigationController)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+
         self.window.rootViewController = navigationController
         self.window.makeKeyAndVisible()
         
         return Observable.never()
+    }
+    
+    // MARK: - Navigation
+    
+     private func showUser(_ user: RandomUser, in navigationController: UINavigationController) -> Observable<Void>{
+        let coordinator = dependencies.resolve(user: user, navigationController: navigationController)
+        return run(coordinator)
     }
 }

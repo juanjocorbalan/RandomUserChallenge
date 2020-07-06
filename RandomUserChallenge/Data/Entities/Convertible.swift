@@ -7,15 +7,24 @@
 //
 
 import Foundation
+import CoreData
 
 protocol DomainConvertibleEntity {
     associatedtype DomainEntity
-    
+
     func toDomain() -> DomainEntity
 }
 
-protocol ManagedConvertibleEntity {
-    associatedtype ManagedEntity: DomainConvertibleEntity
-    
-    func toManaged() -> ManagedEntity
+protocol ManagedToDomainConvertibleEntity: DomainConvertibleEntity {
+    func toDomain() -> DomainEntity
+    func update(with object: DomainEntity)
 }
+
+protocol DomainToManagedConvertibleEntity {
+    associatedtype ManagedEntity: ManagedToDomainConvertibleEntity
+
+    func toManaged(in: NSManagedObjectContext) -> ManagedEntity
+}
+
+
+

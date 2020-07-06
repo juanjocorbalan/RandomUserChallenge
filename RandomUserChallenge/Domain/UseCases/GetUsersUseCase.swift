@@ -17,6 +17,6 @@ class GetUsersUseCase {
     }
     
     func execute() -> Observable<[RandomUser]> {
-        return repository.getUsers()
+        return repository.getUsers().debug()
     }
 }

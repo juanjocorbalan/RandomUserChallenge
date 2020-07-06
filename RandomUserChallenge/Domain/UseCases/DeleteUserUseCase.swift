@@ -16,7 +16,12 @@ class DeleteUserUseCase {
         self.repository = repository
     }
     
-    func execute(with user: RandomUser) -> Observable<Void> {
-        return repository.deleteUser(with: user.identifier)
+    func execute(with indexPath: IndexPath, on: [RandomUser]) -> Observable<[RandomUser]> {
+        var users = on
+        return repository.deleteUser(with: users[indexPath.row].id)
+            .flatMap { _ -> Observable<[RandomUser]> in
+                users.remove(at: indexPath.row)
+                return Observable.of(users)
+            }
     }
 }

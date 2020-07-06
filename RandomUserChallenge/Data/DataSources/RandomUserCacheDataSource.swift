@@ -34,6 +34,6 @@ class RandomUserCacheDataSource<CacheClient>: RandomUserCacheDataSourceType wher
     }
 
     func delete(by id: String) -> Observable<Void> {
-        return cacheClient.delete(key: RandomUserCache.keys.identifier, value: id)
+        return cacheClient.delete(key: RandomUserCache.keys.id, value: id)
     }
 }

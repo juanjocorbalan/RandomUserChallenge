@@ -9,7 +9,7 @@
 import RxSwift
 import CoreData
 
-class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.ManagedEntity: NSManagedObject, T == T.ManagedEntity.DomainEntity {
+class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEntity, T: Identifiable, T.ManagedEntity: NSManagedObject, T == T.ManagedEntity.DomainEntity {
     
     private let stack: CoreDataStack
     
@@ -32,6 +32,8 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
     
     func get(quantity: Int? = nil, orderedBy key: String? = nil, ascending: Bool? = false) -> Observable<[T]> {
         
+        request.predicate = nil
+        
         return Observable.create { [weak self] observer in
             
             guard let strongSelf = self else {
@@ -51,7 +53,7 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
                 
                 observer.onNext(results.toDomain())
                 observer.onCompleted()
- 
+                
             } catch(let error) {
                 observer.onError(error)
             }
@@ -69,19 +71,25 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
                 return Disposables.create()
             }
             
-            strongSelf.request.predicate = NSPredicate(format: "\(key) == %@", value as! CVarArg)
-
-            do {
-                let results = try strongSelf.context.fetch(strongSelf.request)
-                
+            if let results = strongSelf.find(key: key, value: value) {
                 observer.onNext(results.toDomain())
                 observer.onCompleted()
-                
-            } catch {
+            } else {
                 observer.onError(CacheError.error)
             }
             
             return Disposables.create()
+        }
+    }
+    
+    private func find<V>(key: String, value: V) -> [T.ManagedEntity]? {
+        
+        request.predicate = NSPredicate(format: "\(key) == %@", argumentArray: [value])
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            return nil
         }
     }
     
@@ -96,11 +104,15 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
                 return Disposables.create()
             }
             
-            strongSelf.context.insert(element.toManaged())
-
+            if let object = strongSelf.find(key: RandomUserCache.keys.id, value: element.id)?.first {
+                object.update(with: element)
+            } else {
+                _ = element.toManaged(in: strongSelf.context)
+            }
+            
             do {
                 try strongSelf.context.save()
-    
+                
                 observer.onNext(())
                 observer.onCompleted()
             } catch {
@@ -126,12 +138,12 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
             
             do {
                 let results = try strongSelf.context.fetch(strongSelf.request)
-
+                
                 if let element = results.first {
                     strongSelf.context.delete(element)
                     
                     try strongSelf.context.save()
-
+                    
                     observer.onNext(())
                     observer.onCompleted()
                 } else {
@@ -140,7 +152,7 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
             } catch {
                 observer.onError(CacheError.error)
             }
-
+            
             return Disposables.create()
         }
     }
@@ -168,7 +180,7 @@ class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.Manag
             } catch {
                 observer.onError(CacheError.error)
             }
-
+            
             return Disposables.create()
         }
     }

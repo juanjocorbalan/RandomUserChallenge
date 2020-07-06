@@ -14,16 +14,24 @@ class DependencyContainer {
         return RandomUserListCoordinator(window: window, dependencies: self)
     }
     
+    func resolve(user: RandomUser, navigationController: UINavigationController) -> RandomUserDetailCoordinator {
+        return RandomUserDetailCoordinator(user: user, navigationController: navigationController, dependencies: self)
+    }
+
     func resolve() -> RandomUserListViewController {
-        return RandomUserListViewController.initFromStoryboard()
+        let viewController = RandomUserListViewController.initFromStoryboard()
+        viewController.viewModel = resolve()
+        return viewController
     }
     
     func resolve(user: RandomUser) -> RandomUserDetailViewController {
-        return RandomUserDetailViewController.initFromStoryboard()
+        let viewController = RandomUserDetailViewController.initFromStoryboard()
+        viewController.viewModel = resolve(user: user)
+        return viewController
     }
     
     func resolve() -> RandomUserListViewModel {
-        return RandomUserListViewModel()
+        return RandomUserListViewModel(getUserUseCase: resolve(), deleteUserUseCase: resolve())
     }
     
     func resolve(user: RandomUser) -> RandomUserDetailViewModel {

@@ -9,7 +9,7 @@
 import Foundation
 
 struct RandomUserDTO: Codable {
-    let identifier: String
+    let id: String
     let firstName: String
     let lastName: String
     let email: String
@@ -21,7 +21,7 @@ struct RandomUserDTO: Codable {
     let description: String
     
     enum CodingKeys: String, CodingKey {
-        case identifier = "id"
+        case id = "id"
         case firstName = "first_name"
         case lastName = "last_name"
         case email = "email"
@@ -37,7 +37,7 @@ struct RandomUserDTO: Codable {
 extension RandomUserDTO: DomainConvertibleEntity {
     
     func toDomain() -> RandomUser {
-        return RandomUser(identifier: identifier,
+        return RandomUser(id: id,
                           firstName: firstName,
                           lastName: lastName,
                           email: email,

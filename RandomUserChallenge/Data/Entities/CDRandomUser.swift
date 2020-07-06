@@ -9,10 +9,21 @@
 import Foundation
 import CoreData
 
-extension CDRandomUser: DomainConvertibleEntity {
+extension CDRandomUser: ManagedToDomainConvertibleEntity {
+    func update(with object: RandomUser) {
+        firstName = object.firstName
+        lastName = object.lastName
+        email = object.email
+        gender = object.gender
+        ipAddress = object.ipAddress
+        avatar = object.avatar
+        city = object.city
+        background = object.background
+        story = object.description
+    }
     
     func toDomain() -> RandomUser {
-        return RandomUser(identifier: identifier ?? "",
+        return RandomUser(id: id ?? "",
                           firstName: firstName ?? "",
                           lastName: lastName ?? "",
                           email: email ?? "",
@@ -25,11 +36,11 @@ extension CDRandomUser: DomainConvertibleEntity {
     }
 }
 
-extension RandomUser: ManagedConvertibleEntity {
+extension RandomUser: DomainToManagedConvertibleEntity {
     
-    func toManaged() -> CDRandomUser {
-        let user = CDRandomUser(context: CoreDataStack.shared.context)
-        user.identifier = identifier
+    func toManaged(in context: NSManagedObjectContext) -> CDRandomUser {
+        let user = CDRandomUser(context: context)
+        user.id = id
         user.firstName = firstName
         user.lastName = lastName
         user.email = email
