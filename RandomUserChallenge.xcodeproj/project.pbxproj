@@ -26,6 +26,9 @@
 		DF82DB2324B350A4002B2BE6 /* CacheClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2224B350A4002B2BE6 /* CacheClientType.swift */; };
 		DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2424B350D5002B2BE6 /* CoreDataClient.swift */; };
 		DF82DB2824B3522E002B2BE6 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2724B3522E002B2BE6 /* Observable+Extensions.swift */; };
+		DF82DB2A24B35664002B2BE6 /* RandomUserAPIDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2924B35664002B2BE6 /* RandomUserAPIDataSource.swift */; };
+		DF82DB2C24B35674002B2BE6 /* RandomUserCacheDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2B24B35674002B2BE6 /* RandomUserCacheDataSource.swift */; };
+		DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2D24B3572A002B2BE6 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,9 @@
 		DF82DB2224B350A4002B2BE6 /* CacheClientType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheClientType.swift; sourceTree = "<group>"; };
 		DF82DB2424B350D5002B2BE6 /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
 		DF82DB2724B3522E002B2BE6 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
+		DF82DB2924B35664002B2BE6 /* RandomUserAPIDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserAPIDataSource.swift; sourceTree = "<group>"; };
+		DF82DB2B24B35674002B2BE6 /* RandomUserCacheDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCacheDataSource.swift; sourceTree = "<group>"; };
+		DF82DB2D24B3572A002B2BE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,8 @@
 		DF03F9EC24B32D7700F5444C /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				DF82DB2924B35664002B2BE6 /* RandomUserAPIDataSource.swift */,
+				DF82DB2B24B35674002B2BE6 /* RandomUserCacheDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 		DF03F9F124B330A100F5444C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DF82DB2D24B3572A002B2BE6 /* Constants.swift */,
 				DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */,
 				DF03F9EF24B32ED000F5444C /* CoreDataStack.swift */,
 			);
@@ -443,15 +452,18 @@
 			files = (
 				DF82DB2824B3522E002B2BE6 /* Observable+Extensions.swift in Sources */,
 				DF03F9F024B32ED000F5444C /* CoreDataStack.swift in Sources */,
+				DF82DB2C24B35674002B2BE6 /* RandomUserCacheDataSource.swift in Sources */,
 				DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */,
 				DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */,
 				DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */,
 				DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */,
+				DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
 				DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */,
 				DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */,
 				DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */,
 				DF82DB2324B350A4002B2BE6 /* CacheClientType.swift in Sources */,
+				DF82DB2A24B35664002B2BE6 /* RandomUserAPIDataSource.swift in Sources */,
 				DF03F9F324B330EC00F5444C /* RandomUser.swift in Sources */,
 				DF03F9F824B331ED00F5444C /* CDRandomUser.swift in Sources */,
 			);
