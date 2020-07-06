@@ -9,13 +9,13 @@
 import Foundation
 import RxSwift
 
-protocol RandomCacheDataSourceType {
-    func getAll() -> Observable<[RandomUser]>
-    func get(by id: String) -> Observable<RandomUser>
+protocol RandomUserCacheDataSourceType {
+    func get<V>(where key: String, equals value: V) -> Observable<[RandomUser]>
+    func createOrUpdate(user: RandomUser) -> Observable<Void>
     func delete(by id: String) -> Observable<Void>
 }
 
-class RandomUserCacheDataSource<CacheClient>: RandomCacheDataSourceType where CacheClient: CacheClientType, CacheClient.T == RandomUser {
+class RandomUserCacheDataSource<CacheClient>: RandomUserCacheDataSourceType where CacheClient: CacheClientType, CacheClient.T == RandomUser {
     
     private let cacheClient: CacheClient
     
@@ -25,18 +25,12 @@ class RandomUserCacheDataSource<CacheClient>: RandomCacheDataSourceType where Ca
         self.cacheClient = cacheClient
     }
     
-    func getAll() -> Observable<[RandomUser]> {
-        return cacheClient.getAll()
+    func get<V>(where key: String, equals value: V) -> Observable<[RandomUser]> {
+        return cacheClient.get(key: key, value: value)
     }
-    
-    func get(by id: String) -> Observable<RandomUser> {
-        return cacheClient.get(key: RandomUserCache.keys.identifier, value: id)
-            .flatMap { users -> Observable<RandomUser> in
-                guard let user = users.first else  {
-                    return Observable.error(CacheError.notFound)
-                }
-                return Observable.just(user)
-            }
+
+    func createOrUpdate(user: RandomUser) -> Observable<Void> {
+        return cacheClient.createOrUpdate(element: user)
     }
 
     func delete(by id: String) -> Observable<Void> {

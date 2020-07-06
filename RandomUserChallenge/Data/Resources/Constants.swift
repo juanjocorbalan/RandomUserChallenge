@@ -19,5 +19,6 @@ struct RandomUserAPI {
 struct RandomUserCache {
     struct keys {
         static let identifier = "identifier"
+        static let isRemoved = "isRemoved"
     }
 }

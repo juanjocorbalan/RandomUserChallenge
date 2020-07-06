@@ -29,6 +29,8 @@
 		DF82DB2A24B35664002B2BE6 /* RandomUserAPIDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2924B35664002B2BE6 /* RandomUserAPIDataSource.swift */; };
 		DF82DB2C24B35674002B2BE6 /* RandomUserCacheDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2B24B35674002B2BE6 /* RandomUserCacheDataSource.swift */; };
 		DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2D24B3572A002B2BE6 /* Constants.swift */; };
+		DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */; };
+		DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		DF82DB2924B35664002B2BE6 /* RandomUserAPIDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserAPIDataSource.swift; sourceTree = "<group>"; };
 		DF82DB2B24B35674002B2BE6 /* RandomUserCacheDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCacheDataSource.swift; sourceTree = "<group>"; };
 		DF82DB2D24B3572A002B2BE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepositoryType.swift; sourceTree = "<group>"; };
+		DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		DF03F9E724B32D1B00F5444C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */,
 				DF03F9EA24B32D6600F5444C /* Entities */,
 				DF03F9E924B32D5F00F5444C /* UseCases */,
 			);
@@ -163,6 +168,7 @@
 		DF03F9ED24B32D8000F5444C /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -453,11 +459,13 @@
 				DF82DB2824B3522E002B2BE6 /* Observable+Extensions.swift in Sources */,
 				DF03F9F024B32ED000F5444C /* CoreDataStack.swift in Sources */,
 				DF82DB2C24B35674002B2BE6 /* RandomUserCacheDataSource.swift in Sources */,
+				DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */,
 				DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */,
 				DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */,
 				DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */,
 				DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */,
 				DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */,
+				DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
 				DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */,
 				DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */,
