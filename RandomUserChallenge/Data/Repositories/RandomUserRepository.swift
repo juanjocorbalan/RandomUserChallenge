@@ -40,7 +40,7 @@ class RandomUserRepository: RandomUserRepositoryType {
             }
     }
 
-    func deleteUser(by id: String) -> Observable<Void> {
+    func deleteUser(with id: String) -> Observable<Void> {
         return cacheDataSource.delete(by: id)
     }
 }

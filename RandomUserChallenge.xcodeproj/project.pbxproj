@@ -31,6 +31,8 @@
 		DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2D24B3572A002B2BE6 /* Constants.swift */; };
 		DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */; };
 		DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */; };
+		DFD3270E24B361A700D4C82A /* GetUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270D24B361A700D4C82A /* GetUsersUseCase.swift */; };
+		DFD3271024B361B400D4C82A /* DeleteUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270F24B361B400D4C82A /* DeleteUserUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		DF82DB2D24B3572A002B2BE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepositoryType.swift; sourceTree = "<group>"; };
 		DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepository.swift; sourceTree = "<group>"; };
+		DFD3270D24B361A700D4C82A /* GetUsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUsersUseCase.swift; sourceTree = "<group>"; };
+		DFD3270F24B361B400D4C82A /* DeleteUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 		DF03F9E924B32D5F00F5444C /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				DFD3270D24B361A700D4C82A /* GetUsersUseCase.swift */,
+				DFD3270F24B361B400D4C82A /* DeleteUserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -461,9 +467,11 @@
 				DF82DB2C24B35674002B2BE6 /* RandomUserCacheDataSource.swift in Sources */,
 				DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */,
 				DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */,
+				DFD3270E24B361A700D4C82A /* GetUsersUseCase.swift in Sources */,
 				DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */,
 				DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */,
 				DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */,
+				DFD3271024B361B400D4C82A /* DeleteUserUseCase.swift in Sources */,
 				DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */,
 				DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
