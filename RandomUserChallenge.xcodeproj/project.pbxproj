@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF03F9F024B32ED000F5444C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9EF24B32ED000F5444C /* CoreDataStack.swift */; };
+		DF03F9F324B330EC00F5444C /* RandomUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9F224B330EC00F5444C /* RandomUser.swift */; };
+		DF03F9F824B331ED00F5444C /* CDRandomUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9F724B331ED00F5444C /* CDRandomUser.swift */; };
+		DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9F924B3320500F5444C /* Convertible.swift */; };
+		DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */; };
 		DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */; };
 		DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */; };
 		DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */; };
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF03F9EF24B32ED000F5444C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		DF03F9F224B330EC00F5444C /* RandomUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUser.swift; sourceTree = "<group>"; };
+		DF03F9F724B331ED00F5444C /* CDRandomUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRandomUser.swift; sourceTree = "<group>"; };
+		DF03F9F924B3320500F5444C /* Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
+		DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDTO.swift; sourceTree = "<group>"; };
 		DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUserChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +102,7 @@
 			children = (
 				DF03F9ED24B32D8000F5444C /* Repositories */,
 				DF03F9EC24B32D7700F5444C /* DataSources */,
-				DF03F9EE24B32D8F00F5444C /* Clientes */,
+				DF03F9EE24B32D8F00F5444C /* Clients */,
 				DF03F9EB24B32D6F00F5444C /* Entities */,
 			);
 			path = Data;
@@ -108,6 +118,7 @@
 		DF03F9EA24B32D6600F5444C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				DF03F9F224B330EC00F5444C /* RandomUser.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -115,6 +126,9 @@
 		DF03F9EB24B32D6F00F5444C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				DF03F9F924B3320500F5444C /* Convertible.swift */,
+				DF03F9F724B331ED00F5444C /* CDRandomUser.swift */,
+				DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -133,11 +147,37 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		DF03F9EE24B32D8F00F5444C /* Clientes */ = {
+		DF03F9EE24B32D8F00F5444C /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				DF03F9F524B3319F00F5444C /* API */,
+				DF03F9F624B331A500F5444C /* Cache */,
+				DF03F9F124B330A100F5444C /* Resources */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		DF03F9F124B330A100F5444C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */,
+				DF03F9EF24B32ED000F5444C /* CoreDataStack.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF03F9F524B3319F00F5444C /* API */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Clientes;
+			path = API;
+			sourceTree = "<group>";
+		};
+		DF03F9F624B331A500F5444C /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		DF6E283E24B32ACF00C6EDE2 = {
@@ -215,7 +255,6 @@
 				DF6E285624B32AD000C6EDE2 /* Assets.xcassets */,
 				DF6E285024B32ACF00C6EDE2 /* Main.storyboard */,
 				DF6E285824B32AD000C6EDE2 /* LaunchScreen.storyboard */,
-				DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */,
 				DF6E285B24B32AD000C6EDE2 /* Info.plist */,
 			);
 			path = Resources;
@@ -374,10 +413,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF03F9F024B32ED000F5444C /* CoreDataStack.swift in Sources */,
+				DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */,
+				DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
 				DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */,
 				DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */,
 				DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */,
+				DF03F9F324B330EC00F5444C /* RandomUser.swift in Sources */,
+				DF03F9F824B331ED00F5444C /* CDRandomUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
