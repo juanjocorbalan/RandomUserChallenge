@@ -9,7 +9,7 @@
 import RxSwift
 import CoreData
 
-class CoreDataClient<T: ManagedConvertibleEntity> where T.ManagedEntity: NSManagedObject, T == T.ManagedEntity.DomainEntity {
+class CoreDataClient<T: ManagedConvertibleEntity>: CacheClientType where T.ManagedEntity: NSManagedObject, T == T.ManagedEntity.DomainEntity {
     
     private let stack: CoreDataStack
     

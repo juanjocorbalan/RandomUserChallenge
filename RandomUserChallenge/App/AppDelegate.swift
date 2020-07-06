@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    private var mainCoordinator: RandomUserListCoordinator!
+    private var dependencies = DependencyContainer()
+    private let disposeBag = DisposeBag()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        window = UIWindow()
+        
+        mainCoordinator = dependencies.resolve(window: window!)
+        mainCoordinator.start()
+            .subscribe()
+            .disposed(by: disposeBag)
+
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 }

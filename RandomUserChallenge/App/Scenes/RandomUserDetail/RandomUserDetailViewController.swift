@@ -1,5 +1,5 @@
 //
-//  RandomUserListViewController.swift
+//  RandomUserDetailViewController.swift
 //  RandomUserChallenge
 //
 //  Created by Juanjo Corbalán on 06/07/2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class RandomUserListViewController: UITableViewController, StoryboardInitializable {
-
-    var viewModel: RandomUserListViewModel!
+class RandomUserDetailViewController: UIViewController, StoryboardInitializable {
+    
+    var viewModel: RandomUserDetailViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
