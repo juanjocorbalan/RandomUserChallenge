@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		DF6E285A24B32AD000C6EDE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6E285824B32AD000C6EDE2 /* LaunchScreen.storyboard */; };
 		DF6E286524B32AD000C6EDE2 /* RandomUserChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E286424B32AD000C6EDE2 /* RandomUserChallengeTests.swift */; };
 		DF6E287024B32AD000C6EDE2 /* RandomUserChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E286F24B32AD000C6EDE2 /* RandomUserChallengeUITests.swift */; };
+		DF82DB1F24B34C42002B2BE6 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF82DB1E24B34C42002B2BE6 /* RxSwift */; };
+		DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2024B34D76002B2BE6 /* APIClient.swift */; };
+		DF82DB2324B350A4002B2BE6 /* CacheClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2224B350A4002B2BE6 /* CacheClientType.swift */; };
+		DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2424B350D5002B2BE6 /* CoreDataClient.swift */; };
+		DF82DB2824B3522E002B2BE6 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2724B3522E002B2BE6 /* Observable+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,10 @@
 		DF6E286B24B32AD000C6EDE2 /* RandomUserChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomUserChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E286F24B32AD000C6EDE2 /* RandomUserChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserChallengeUITests.swift; sourceTree = "<group>"; };
 		DF6E287124B32AD000C6EDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF82DB2024B34D76002B2BE6 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		DF82DB2224B350A4002B2BE6 /* CacheClientType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheClientType.swift; sourceTree = "<group>"; };
+		DF82DB2424B350D5002B2BE6 /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
+		DF82DB2724B3522E002B2BE6 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF82DB1F24B34C42002B2BE6 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +114,8 @@
 				DF03F9EC24B32D7700F5444C /* DataSources */,
 				DF03F9EE24B32D8F00F5444C /* Clients */,
 				DF03F9EB24B32D6F00F5444C /* Entities */,
+				DF03F9F124B330A100F5444C /* Resources */,
+				DF82DB2624B35219002B2BE6 /* Extensions */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -152,7 +164,6 @@
 			children = (
 				DF03F9F524B3319F00F5444C /* API */,
 				DF03F9F624B331A500F5444C /* Cache */,
-				DF03F9F124B330A100F5444C /* Resources */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 		DF03F9F524B3319F00F5444C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				DF82DB2024B34D76002B2BE6 /* APIClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -176,6 +188,8 @@
 		DF03F9F624B331A500F5444C /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				DF82DB2224B350A4002B2BE6 /* CacheClientType.swift */,
+				DF82DB2424B350D5002B2BE6 /* CoreDataClient.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -282,6 +296,14 @@
 			path = RandomUserList;
 			sourceTree = "<group>";
 		};
+		DF82DB2624B35219002B2BE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DF82DB2724B3522E002B2BE6 /* Observable+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +320,9 @@
 			dependencies = (
 			);
 			name = RandomUserChallenge;
+			packageProductDependencies = (
+				DF82DB1E24B34C42002B2BE6 /* RxSwift */,
+			);
 			productName = RandomUserChallenge;
 			productReference = DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +395,9 @@
 				Base,
 			);
 			mainGroup = DF6E283E24B32ACF00C6EDE2;
+			packageReferences = (
+				DF82DB1D24B34C42002B2BE6 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = DF6E284824B32ACF00C6EDE2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -413,13 +441,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF82DB2824B3522E002B2BE6 /* Observable+Extensions.swift in Sources */,
 				DF03F9F024B32ED000F5444C /* CoreDataStack.swift in Sources */,
+				DF82DB2524B350D5002B2BE6 /* CoreDataClient.swift in Sources */,
 				DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */,
 				DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */,
+				DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
 				DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */,
 				DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */,
 				DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */,
+				DF82DB2324B350A4002B2BE6 /* CacheClientType.swift in Sources */,
 				DF03F9F324B330EC00F5444C /* RandomUser.swift in Sources */,
 				DF03F9F824B331ED00F5444C /* CDRandomUser.swift in Sources */,
 			);
@@ -750,6 +782,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DF82DB1D24B34C42002B2BE6 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DF82DB1E24B34C42002B2BE6 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF82DB1D24B34C42002B2BE6 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */ = {
