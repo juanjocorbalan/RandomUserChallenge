@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RandomUserListViewController.swift
 //  RandomUserChallenge
 //
 //  Created by Juanjo Corbalán on 06/07/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RandomUserListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */; };
 		DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */; };
-		DF6E284F24B32ACF00C6EDE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284E24B32ACF00C6EDE2 /* ViewController.swift */; };
+		DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */; };
 		DF6E285224B32ACF00C6EDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF6E285024B32ACF00C6EDE2 /* Main.storyboard */; };
 		DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */; };
 		DF6E285724B32AD000C6EDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF6E285624B32AD000C6EDE2 /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 		DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUserChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DF6E284E24B32ACF00C6EDE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserListViewController.swift; sourceTree = "<group>"; };
 		DF6E285124B32ACF00C6EDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF6E285424B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RandomUserChallenge.xcdatamodel; sourceTree = "<group>"; };
 		DF6E285624B32AD000C6EDE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +78,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF03F9E724B32D1B00F5444C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				DF03F9EA24B32D6600F5444C /* Entities */,
+				DF03F9E924B32D5F00F5444C /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		DF03F9E824B32D2200F5444C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DF03F9ED24B32D8000F5444C /* Repositories */,
+				DF03F9EC24B32D7700F5444C /* DataSources */,
+				DF03F9EE24B32D8F00F5444C /* Clientes */,
+				DF03F9EB24B32D6F00F5444C /* Entities */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DF03F9E924B32D5F00F5444C /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		DF03F9EA24B32D6600F5444C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		DF03F9EB24B32D6F00F5444C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		DF03F9EC24B32D7700F5444C /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		DF03F9ED24B32D8000F5444C /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		DF03F9EE24B32D8F00F5444C /* Clientes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Clientes;
+			sourceTree = "<group>";
+		};
 		DF6E283E24B32ACF00C6EDE2 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +163,9 @@
 		DF6E284924B32ACF00C6EDE2 /* RandomUserChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */,
-				DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */,
-				DF6E284E24B32ACF00C6EDE2 /* ViewController.swift */,
-				DF6E285024B32ACF00C6EDE2 /* Main.storyboard */,
-				DF6E285624B32AD000C6EDE2 /* Assets.xcassets */,
-				DF6E285824B32AD000C6EDE2 /* LaunchScreen.storyboard */,
-				DF6E285B24B32AD000C6EDE2 /* Info.plist */,
-				DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */,
+				DF6E287D24B32B1700C6EDE2 /* App */,
+				DF03F9E824B32D2200F5444C /* Data */,
+				DF03F9E724B32D1B00F5444C /* Domain */,
 			);
 			path = RandomUserChallenge;
 			sourceTree = "<group>";
@@ -129,6 +186,61 @@
 				DF6E287124B32AD000C6EDE2 /* Info.plist */,
 			);
 			path = RandomUserChallengeUITests;
+			sourceTree = "<group>";
+		};
+		DF6E287D24B32B1700C6EDE2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */,
+				DF6E284C24B32ACF00C6EDE2 /* SceneDelegate.swift */,
+				DF6E287E24B32B8000C6EDE2 /* Scenes */,
+				DF6E288024B32B9100C6EDE2 /* Extensions */,
+				DF6E287F24B32B8900C6EDE2 /* Resources */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DF6E287E24B32B8000C6EDE2 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E288224B32C0900C6EDE2 /* RandomUserList */,
+				DF6E288124B32C0600C6EDE2 /* RandomUserDetail */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		DF6E287F24B32B8900C6EDE2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E285624B32AD000C6EDE2 /* Assets.xcassets */,
+				DF6E285024B32ACF00C6EDE2 /* Main.storyboard */,
+				DF6E285824B32AD000C6EDE2 /* LaunchScreen.storyboard */,
+				DF6E285324B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld */,
+				DF6E285B24B32AD000C6EDE2 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DF6E288024B32B9100C6EDE2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DF6E288124B32C0600C6EDE2 /* RandomUserDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RandomUserDetail;
+			sourceTree = "<group>";
+		};
+		DF6E288224B32C0900C6EDE2 /* RandomUserList */ = {
+			isa = PBXGroup;
+			children = (
+				DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */,
+			);
+			path = RandomUserList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF6E284F24B32ACF00C6EDE2 /* ViewController.swift in Sources */,
+				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,
 				DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */,
 				DF6E285524B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodeld in Sources */,
 				DF6E284D24B32ACF00C6EDE2 /* SceneDelegate.swift in Sources */,
@@ -370,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -440,7 +552,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3P3D5394KZ;
-				INFOPLIST_FILE = RandomUserChallenge/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RandomUserChallenge/App/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +560,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanjocorbalan.RandomUserChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -458,7 +570,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3P3D5394KZ;
-				INFOPLIST_FILE = RandomUserChallenge/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RandomUserChallenge/App/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -466,7 +578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.juanjocorbalan.RandomUserChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
