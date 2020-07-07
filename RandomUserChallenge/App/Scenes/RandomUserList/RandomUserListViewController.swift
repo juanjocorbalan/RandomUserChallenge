@@ -19,7 +19,8 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
 
     private let disposeBag = DisposeBag()
     private let refreshControl = UIRefreshControl()
-    
+    private var selectedUserFrame: CGRect?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +75,9 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
         collectionView.rx.itemSelected
             .do(onNext: { [weak self] indexPath in
                 self?.collectionView.deselectItem(at: indexPath, animated: true)
+                if let cell = self?.collectionView.cellForItem(at: indexPath) {
+                    self?.selectedUserFrame = cell.contentView.convert(cell.contentView.frame, to: self?.view)
+                }
             })
             .bind(to: viewModel.userSelected)
             .disposed(by: disposeBag)
@@ -90,5 +94,11 @@ extension RandomUserListViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let columnWidth = (collectionView.frame.size.width - Styles.Constants.defaultCornerRadius * 3.0) / 2.0
         return CGSize(width: columnWidth, height: columnWidth * Styles.Constants.userAspectRatio)
+    }
+}
+
+extension RandomUserListViewController: Zoomable {
+    var zoomableViewFrame: CGRect {
+        self.selectedUserFrame ?? .zero
     }
 }

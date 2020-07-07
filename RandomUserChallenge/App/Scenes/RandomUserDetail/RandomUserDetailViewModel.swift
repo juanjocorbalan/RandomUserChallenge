@@ -13,8 +13,10 @@ import RxSwift
 
 struct RandomUserDetailViewModel {
     
-    // MARK: - Inputs
+    private let closeSubject = PublishSubject<Void>()
     
+    // MARK: - Inputs
+    lazy var close: AnyObserver<Void> = self.closeSubject.asObserver()
 
     // MARK: - Outputs
     
@@ -25,6 +27,7 @@ struct RandomUserDetailViewModel {
     let description: Observable<String>
     let avatar: Observable<(URL?, String)>
     let background: Observable<(URL?, String)>
+    lazy var didClose: Observable<Void> = self.closeSubject.asObservable()
 
     init(user: RandomUser) {
         self.name = Observable.of("\(user.firstName) \(user.lastName)")

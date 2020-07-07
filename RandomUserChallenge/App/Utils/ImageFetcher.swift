@@ -1,5 +1,5 @@
 //
-//  ImageLoader.swift
+//  ImageFetcher.swift
 //  RandomUserChallenge
 //
 //  Created by Juanjo Corbalán on 07/07/2020.
@@ -34,11 +34,8 @@ final class ImageFetcher {
                 observer.onNext(image)
                 observer.onCompleted()
             }
-            let configuration = URLSessionConfiguration.default
-            configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-            configuration.urlCache = nil
 
-            let task = URLSession(configuration: configuration).dataTask(with: url as URL, completionHandler: { (data, response, error) -> Void in
+            let task = URLSession.shared.dataTask(with: url as URL, completionHandler: { (data, response, error) -> Void in
                 guard let data = data, error == nil else {
                     observer.onNext(nil)
                     observer.onCompleted()

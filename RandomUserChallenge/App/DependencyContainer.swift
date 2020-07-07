@@ -70,4 +70,8 @@ class DependencyContainer {
     func resolve() -> ImageFetcher {
         return ImageFetcher.shared
     }
+    
+    func resolve() -> ZoomAnimator {
+        return ZoomAnimator()
+    }
 }

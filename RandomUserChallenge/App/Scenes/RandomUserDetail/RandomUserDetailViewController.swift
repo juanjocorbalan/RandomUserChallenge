@@ -12,13 +12,13 @@ import RxSwift
 class RandomUserDetailViewController: UIViewController, StoryboardInitializable {
     
     private let disposeBag = DisposeBag()
+    private let closeItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: nil)
     
     var viewModel: RandomUserDetailViewModel!
     var imageFetcher: ImageFetcher!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -39,7 +39,6 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
     }
 
     private func setupUI() {
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
         genderLabel.font = UIFont.preferredFont(forTextStyle: .body)
         cityLabel.font = UIFont.preferredFont(forTextStyle: .body)
         emailLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -58,6 +57,7 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         blurView2.layer.borderWidth = Styles.Constants.userBorderWidth
         blurView2.layer.borderColor = Styles.Colors.accentColor.cgColor
         backgroundImageView.alpha = 0.5
+        navigationItem.rightBarButtonItem = closeItem
     }
     
     private func setupBindings() {
@@ -83,7 +83,7 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
             .disposed(by: disposeBag)
 
         viewModel.name
-            .bind(to: nameLabel.rx.text)
+            .bind(to: navigationItem.rx.title)
             .disposed(by: disposeBag)
         
         viewModel.gender
@@ -100,6 +100,10 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         
         viewModel.description
             .bind(to: descriptionTextView.rx.text)
+            .disposed(by: disposeBag)
+        
+        closeItem.rx.tap.debug()
+            .bind(to: viewModel.close)
             .disposed(by: disposeBag)
     }
     
