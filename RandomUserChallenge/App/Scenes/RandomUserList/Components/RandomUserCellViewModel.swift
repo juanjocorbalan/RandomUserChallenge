@@ -7,17 +7,30 @@
 //
 
 import Foundation
+import RxSwift
 
 struct RandomUserCellViewModel {
-    let name: String
-    let city: String
-    let avatar: URL?
-    let background: URL?
+    
+    // MARK: - Inputs
+    let removeSelected: AnyObserver<Void>
+
+    // MARK: - Outputs
+    let name: Observable<String>
+    let city: Observable<String>
+    let avatar: Observable<URL?>
+    let background: Observable<URL?>
+    let removeDidTap: Observable<Void>
+    
+    // MARK: - Init
 
     init(user: RandomUser) {
-        self.name = "\(user.firstName) \(user.lastName)"
-        self.city = user.city
-        self.avatar = URL(string: user.avatar)
-        self.background = URL(string: user.background)
+        let removeSubject = PublishSubject<Void>()
+        self.removeSelected = removeSubject.asObserver()
+        self.removeDidTap = removeSubject.asObservable()
+
+        self.name = Observable.of("\(user.firstName) \(user.lastName)")
+        self.city =  Observable.of(user.city)
+        self.avatar = Observable.of(URL(string: user.avatar))
+        self.background =  Observable.of(URL(string: user.background))
     }
 }

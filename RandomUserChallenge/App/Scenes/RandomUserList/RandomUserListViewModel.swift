@@ -11,61 +11,62 @@ import RxSwift
 
 struct RandomUserListViewModel {
     
+    private var disposeBag = DisposeBag()
+    private var usersSubject = BehaviorSubject<[RandomUser]>(value: [])
+    private var reloadSubject = PublishSubject<Void>()
+    private var userSelectedSubject = PublishSubject<IndexPath>()
+    private var userDeletedSubject = PublishSubject<IndexPath>()
+    private var errorSubject = PublishSubject<String>()
+    private let getUsersUseCase: GetUsersUseCase
+    private let deleteUserUseCase: DeleteUserUseCase
+
     // MARK: - Inputs
     
-    let userSelected: AnyObserver<IndexPath>
-    let userDeleted: AnyObserver<IndexPath>
-    let reload: AnyObserver<Void>
+    lazy var userSelected: AnyObserver<IndexPath> = userSelectedSubject.asObserver()
+    lazy var userDeleted: AnyObserver<IndexPath> = userDeletedSubject.asObserver()
+    lazy var reload: AnyObserver<Void> = reloadSubject.asObserver()
 
     // MARK: - Outputs
     
-    let title: Observable<String>
-    let users: Observable<[RandomUserCellViewModel]>
-    let showUser: Observable<RandomUser>
-    let errorMessage: Observable<String>
-    let isLoading: Observable<Bool>
+    lazy var title: Observable<String> = Observable.of("Random User Inc.")
+    lazy var users: Observable<[RandomUserCellViewModel]> = self.usersSubject.map { $0.map(RandomUserCellViewModel.init) }
+    lazy var errorMessage: Observable<String> = self.errorSubject.asObserver()
+    lazy var showUser: Observable<RandomUser> = self.userSelectedSubject.asObservable().withLatestFrom(usersSubject.asObservable()) { indexPath, users in
+                                                    return users[indexPath.row]
+                                                }
+    lazy var isLoading: Observable<Bool> = Observable.merge(reloadSubject.map { _ in true },
+                                                            errorSubject.map { _ in false },
+                                                            usersSubject.map { users in users.count == 0 })
 
-    init(getUserUseCase: GetUsersUseCase, deleteUserUseCase: DeleteUserUseCase) {
-        self.title = Observable.of("Random User Inc.")
+    init(getUsersUseCase: GetUsersUseCase, deleteUserUseCase: DeleteUserUseCase) {
+        self.getUsersUseCase = getUsersUseCase
+        self.deleteUserUseCase = deleteUserUseCase
+        setupRx()
+    }
+    
+    private func setupRx() {
 
-        let _reload = PublishSubject<Void>()
-        self.reload = _reload.asObserver()
-        
-        let _errorMessage = PublishSubject<String>()
-        self.errorMessage = _errorMessage.asObservable()
-        
-        let loadedUsers = _reload.startWith(()).flatMapLatest { _ in
-            return getUserUseCase.execute()
+        reloadSubject.asObservable().startWith(()).flatMapLatest { _ in
+            return self.getUsersUseCase.execute()
                 .catchError { error in
-                    _errorMessage.onNext(error.localizedDescription)
+                    self.errorSubject.onNext(error.localizedDescription)
                     return Observable.empty()
                 }
-        }
-        
-        
-        let _userSelected = PublishSubject<IndexPath>()
-        self.userSelected = _userSelected.asObserver()
-        self.showUser = _userSelected.withLatestFrom(loadedUsers) { indexPath, users in
-            return users[indexPath.row]
-        }
+        }.subscribe(onNext: { users in
+            self.usersSubject.onNext(users)
+        }).disposed(by: disposeBag)
 
-        let _userDeleted = PublishSubject<IndexPath>()
-        self.userDeleted = _userDeleted.asObserver()
-        let updatedUsers = _userDeleted.withLatestFrom(loadedUsers) { indexPath, users in
-            return (indexPath, users)
-            }.flatMapLatest { (indexPath, users) in
-                return deleteUserUseCase.execute(with: indexPath, on: users)
-                    .catchError { error in
-                        _errorMessage.onNext(error.localizedDescription)
-                        return Observable.of([])
-                }
+        userDeletedSubject.asObservable().withLatestFrom(usersSubject.asObservable()) { indexPath, users in
+            return (users[indexPath.item], users)
+        }.flatMapLatest { (user, users) in
+            return self.deleteUserUseCase.execute(with: user, on: users)
+                .catchError { error in
+                    self.errorSubject.onNext(error.localizedDescription)
+                    return Observable.of([])
             }
-        
-        self.users = Observable.merge(loadedUsers, updatedUsers).map { $0.map(RandomUserCellViewModel.init) }
-
-        self.isLoading = Observable.merge(_reload.map { _ in true },
-                                          errorMessage.map { _ in false },
-                                          users.map { users in users.count == 0 })
+        }.subscribe(onNext: { users in
+            self.usersSubject.onNext(users)
+        }).disposed(by: disposeBag)
     }
 }
 

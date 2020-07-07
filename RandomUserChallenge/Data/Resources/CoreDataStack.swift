@@ -15,8 +15,12 @@ final class CoreDataStack {
 
     private let persistentContainer: NSPersistentContainer
 
-    var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
+    lazy private(set) var backgroundContext: NSManagedObjectContext = {
+        return persistentContainer.newBackgroundContext()
+    }()
+    
+    var viewContext: NSManagedObjectContext {
+        persistentContainer.viewContext
     }
     
     private init() {

@@ -12,6 +12,7 @@ import RxSwift
 protocol RandomUserCacheDataSourceType {
     func get<V>(where key: String, equals value: V) -> Observable<[RandomUser]>
     func createOrUpdate(user: RandomUser) -> Observable<Void>
+    func update(user: RandomUser, with values: [String : Any]) -> Observable<Void>
     func delete(by id: String) -> Observable<Void>
 }
 
@@ -31,6 +32,10 @@ class RandomUserCacheDataSource<CacheClient>: RandomUserCacheDataSourceType wher
 
     func createOrUpdate(user: RandomUser) -> Observable<Void> {
         return cacheClient.createOrUpdate(element: user)
+    }
+
+    func update(user: RandomUser, with values: [String : Any]) -> Observable<Void> {
+        return cacheClient.update(element: user, with: values)
     }
 
     func delete(by id: String) -> Observable<Void> {

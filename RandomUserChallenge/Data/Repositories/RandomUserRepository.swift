@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 class RandomUserRepository: RandomUserRepositoryType {
-    
+
     private let apiDataSource: RandomUserAPIDataSourceType
     private let cacheDataSource: RandomUserCacheDataSourceType
     private let disposeBag = DisposeBag()
@@ -23,7 +23,6 @@ class RandomUserRepository: RandomUserRepositoryType {
     func getUsers() -> Observable<[RandomUser]> {
         
         return apiDataSource.getUsers()
-            .observeOn(MainScheduler.instance)
             .flatMap { [weak self] users -> Observable<[RandomUser]> in
                 guard let strongSelf = self else { return Observable.just(users) }
                 users.forEach {
@@ -40,7 +39,7 @@ class RandomUserRepository: RandomUserRepositoryType {
             }
     }
 
-    func deleteUser(with id: String) -> Observable<Void> {
-        return cacheDataSource.delete(by: id)
+    func deleteUser(_ user: RandomUser) -> Observable<Void> {
+        return cacheDataSource.update(user: user, with: [RandomUserCache.keys.isRemoved : true])
     }
 }

@@ -14,7 +14,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     private let stack: CoreDataStack
     
     private var context: NSManagedObjectContext {
-        return self.stack.context
+        return self.stack.backgroundContext
     }
     
     private var request: NSFetchRequest<T.ManagedEntity>
@@ -27,11 +27,6 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     //MARK: - Get
     
     func getAll() -> Observable<[T]> {
-        return get()
-    }
-    
-    func get(quantity: Int? = nil, orderedBy key: String? = nil, ascending: Bool? = false) -> Observable<[T]> {
-        
         request.predicate = nil
         
         return Observable.create { [weak self] observer in
@@ -41,16 +36,8 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
                 return Disposables.create()
             }
             
-            if let keyPath = key, let ascending = ascending {
-                strongSelf.request.sortDescriptors = [NSSortDescriptor(key: keyPath, ascending: ascending)]
-            }
-            
             do {
-                var results = try strongSelf.context.fetch(strongSelf.request)
-                if let quantity = quantity, quantity <= results.count {
-                    results = Array(results.prefix(quantity))
-                }
-                
+                let results = try strongSelf.context.fetch(strongSelf.request)
                 observer.onNext(results.toDomain())
                 observer.onCompleted()
                 
@@ -123,6 +110,38 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
         }
     }
     
+    //MARK: - Partial Update
+    
+    func update(element: T, with values: [String : Any]) -> Observable<Void> {
+        
+        return Observable.create { [weak self] observer in
+            
+            guard let strongSelf = self else {
+                observer.onError(CacheError.error)
+                return Disposables.create()
+            }
+            
+            if let object = strongSelf.find(key: RandomUserCache.keys.id, value: element.id)?.first {
+                values.forEach { (key, value) in
+                    object.setValue(value, forKey: key)
+                }
+            } else {
+                observer.onError(CacheError.notFound)
+            }
+            
+            do {
+                try strongSelf.context.save()
+                
+                observer.onNext(())
+                observer.onCompleted()
+            } catch {
+                observer.onError(CacheError.error)
+            }
+            
+            return Disposables.create()
+        }
+    }
+
     //MARK: - Remove
     
     func delete<V>(key: String, value: V) -> Observable<Void> {

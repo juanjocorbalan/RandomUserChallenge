@@ -16,12 +16,17 @@ class DeleteUserUseCase {
         self.repository = repository
     }
     
-    func execute(with indexPath: IndexPath, on: [RandomUser]) -> Observable<[RandomUser]> {
-        var users = on
-        return repository.deleteUser(with: users[indexPath.row].id)
+    func execute(with user: RandomUser, on users: [RandomUser]) -> Observable<[RandomUser]> {
+        var users = users
+        return repository.deleteUser(user)
             .flatMap { _ -> Observable<[RandomUser]> in
-                users.remove(at: indexPath.row)
+                if let index = users.firstIndex(where: { $0.id == user.id}) {
+                    users.remove(at: index)
+                }
                 return Observable.of(users)
             }
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+
     }
 }

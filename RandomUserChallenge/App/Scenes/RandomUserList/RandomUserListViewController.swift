@@ -15,10 +15,10 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
     var viewModel: RandomUserListViewModel!
     
     @IBOutlet weak var loadingView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
 
-    private let refreshControl = UIRefreshControl()
     private let disposeBag = DisposeBag()
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
     }
     
     private func setupUI() {
-        tableView.refreshControl = refreshControl
+        collectionView.refreshControl = refreshControl
     }
     
     private func setupBindings() {
@@ -39,14 +39,21 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
         
         viewModel.users
             .do(onNext: { [weak self] _ in
-                self?.refreshControl.endRefreshing()
-                self?.tableView.setContentOffset(.zero, animated: false)
+                DispatchQueue.main.async {
+                    self?.refreshControl.endRefreshing()
+                }
             })
-            .bind(to: tableView.rx.items(cellIdentifier: "RandomUserCell", cellType: RandomUserCellView.self)) { (_, viewModel, cell) in
-                cell.setup(with: viewModel)
-        }
-        .disposed(by: disposeBag)
-        
+            .bind(to: collectionView.rx.items(cellIdentifier: "RandomUserCell", cellType: RandomUserCellView.self)) { (index, cellViewModel, cell) in
+                
+                cellViewModel.removeDidTap
+                    .map { IndexPath(item: index, section: 0) }
+                    .bind(to: self.viewModel.userDeleted)
+                    .disposed(by: cell.disposeBag)
+
+                cell.setup(with: cellViewModel)
+            }
+            .disposed(by: disposeBag)
+
         viewModel.errorMessage
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
@@ -64,14 +71,24 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
             .bind(to: viewModel.reload)
             .disposed(by: disposeBag)
         
-        tableView.rx.itemSelected
+        collectionView.rx.itemSelected
             .do(onNext: { [weak self] indexPath in
-                self?.tableView.deselectRow(at: indexPath, animated: true)
+                self?.collectionView.deselectItem(at: indexPath, animated: true)
             })
             .bind(to: viewModel.userSelected)
             .disposed(by: disposeBag)
         
-        tableView.rx.setDelegate(self)
+        collectionView.rx.setDelegate(self)
             .disposed(by: disposeBag)
+    }
+}
+
+extension RandomUserListViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let columnWidth = (collectionView.frame.size.width - 48) / 2.0
+        return CGSize(width: columnWidth, height: columnWidth * 1.55)
     }
 }

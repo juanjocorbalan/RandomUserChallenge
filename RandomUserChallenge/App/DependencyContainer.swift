@@ -31,7 +31,7 @@ class DependencyContainer {
     }
     
     func resolve() -> RandomUserListViewModel {
-        return RandomUserListViewModel(getUserUseCase: resolve(), deleteUserUseCase: resolve())
+        return RandomUserListViewModel(getUsersUseCase: resolve(), deleteUserUseCase: resolve())
     }
     
     func resolve(user: RandomUser) -> RandomUserDetailViewModel {
