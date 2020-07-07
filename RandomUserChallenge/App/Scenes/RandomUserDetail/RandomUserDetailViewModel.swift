@@ -26,11 +26,7 @@ struct RandomUserDetailViewModel {
     let avatar: Observable<URL?>
     let background: Observable<URL?>
 
-    private let user: RandomUser
-    
     init(user: RandomUser) {
-        self.user = user
-
         self.name = Observable.of("\(user.firstName) \(user.lastName)")
         self.gender = Observable.of(user.gender)
         self.city = Observable.of(user.city)

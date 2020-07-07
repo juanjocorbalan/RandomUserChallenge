@@ -25,7 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainCoordinator.start()
             .subscribe()
             .disposed(by: disposeBag)
+        
+        setupAppearance()
 
         return true
+    }
+    
+    private func setupAppearance() {
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor(named: "AccentColor")
+        navigationBarAppearace.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "AccentColor") ?? UIColor.label
+        ]
     }
 }

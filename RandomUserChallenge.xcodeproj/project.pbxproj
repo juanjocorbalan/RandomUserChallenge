@@ -35,6 +35,7 @@
 		DF97D19D24B36E8B00C76C6C /* RandomUserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D19C24B36E8B00C76C6C /* RandomUserDetailViewModel.swift */; };
 		DF97D1A224B38C4700C76C6C /* RandomUserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D1A124B38C4700C76C6C /* RandomUserCellViewModel.swift */; };
 		DF97D1A424B38C5A00C76C6C /* RandomUserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D1A324B38C5A00C76C6C /* RandomUserCellView.swift */; };
+		DFAABC0624B45F6100578906 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAABC0524B45F6100578906 /* UIImageView+Extensions.swift */; };
 		DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */; };
 		DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */; };
 		DFD3270E24B361A700D4C82A /* GetUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270D24B361A700D4C82A /* GetUsersUseCase.swift */; };
@@ -96,6 +97,7 @@
 		DF97D19C24B36E8B00C76C6C /* RandomUserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDetailViewModel.swift; sourceTree = "<group>"; };
 		DF97D1A124B38C4700C76C6C /* RandomUserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCellViewModel.swift; sourceTree = "<group>"; };
 		DF97D1A324B38C5A00C76C6C /* RandomUserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCellView.swift; sourceTree = "<group>"; };
+		DFAABC0524B45F6100578906 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepositoryType.swift; sourceTree = "<group>"; };
 		DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepository.swift; sourceTree = "<group>"; };
 		DFD3270D24B361A700D4C82A /* GetUsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUsersUseCase.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				DFD3271324B3676700D4C82A /* StoryboardInitializable.swift */,
 				DFD3271524B367A100D4C82A /* UIViewCotroller+Extensions.swift */,
+				DFAABC0524B45F6100578906 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				DF82DB2124B34D76002B2BE6 /* APIClient.swift in Sources */,
 				DF97D1A224B38C4700C76C6C /* RandomUserCellViewModel.swift in Sources */,
 				DFD3271024B361B400D4C82A /* DeleteUserUseCase.swift in Sources */,
+				DFAABC0624B45F6100578906 /* UIImageView+Extensions.swift in Sources */,
 				DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */,
 				DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */,
 				DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */,

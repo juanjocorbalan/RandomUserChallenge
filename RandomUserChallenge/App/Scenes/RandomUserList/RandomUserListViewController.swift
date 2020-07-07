@@ -65,6 +65,9 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
+            .do(onNext: { [weak self] indexPath in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+            })
             .bind(to: viewModel.userSelected)
             .disposed(by: disposeBag)
         
