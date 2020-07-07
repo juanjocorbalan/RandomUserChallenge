@@ -12,7 +12,11 @@ import RxSwift
 class RandomUserCellView: UICollectionViewCell {
     
     var disposeBag = DisposeBag()
-
+    
+    static var storyboardID: String {
+        return String(describing: Self.self)
+    }
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -28,28 +32,36 @@ class RandomUserCellView: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        disposeBag = DisposeBag()
         avatarImageView.image = nil
+        avatarImageView.alpha = 0.0
         backgroundImageView.image = nil
+        backgroundImageView.alpha = 0.0
         nameLabel.text = nil
         cityLabel.text = nil
-        disposeBag =  DisposeBag()
         setupUI()
     }
     
-    func setup(with viewModel: RandomUserCellViewModel) {
+    func setup(with viewModel: RandomUserCellViewModel, imageFecther: ImageFetcher = ImageFetcher.shared) {
         setupUI()
         
         viewModel.avatar
-            .filter { $0 != nil }
-            .subscribe(onNext: { url in
-                self.avatarImageView.with(url: url!)
+            .filter { $0.0 != nil }
+            .flatMap { avatarData  in
+                ImageFetcher.shared.fetchImage(from: avatarData.0!, for: avatarData.1)
+            }
+            .subscribe(onNext: { image in
+                self.showImage(image: image, in: self.avatarImageView)
             })
             .disposed(by: disposeBag)
         
         viewModel.background
-            .filter { $0 != nil }
-            .subscribe(onNext: { url in
-                self.backgroundImageView.with(url: url!)
+            .filter { $0.0 != nil }
+            .flatMap { backgroundData  in
+                ImageFetcher.shared.fetchImage(from: backgroundData.0!, for: backgroundData.1)
+            }
+            .subscribe(onNext: { image in
+                self.showImage(image: image, in: self.backgroundImageView)
             })
             .disposed(by: disposeBag)
         
@@ -62,7 +74,8 @@ class RandomUserCellView: UICollectionViewCell {
             .disposed(by: disposeBag)
         
         removeButton.rx.tap.throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .bind(to: viewModel.removeSelected).disposed(by: disposeBag)
+            .bind(to: viewModel.removeSelected)
+            .disposed(by: disposeBag)
 
     }
     
@@ -71,15 +84,24 @@ class RandomUserCellView: UICollectionViewCell {
         cityLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2.0
         avatarImageView.layer.masksToBounds = true
-        avatarImageView.layer.borderWidth = 3.0
-        avatarImageView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
-        containerView.layer.cornerRadius = 16.0
+        avatarImageView.layer.borderWidth = Styles.Constants.avatarBorderWidth
+        avatarImageView.layer.borderColor = Styles.Colors.accentColor.cgColor
+        containerView.layer.cornerRadius = Styles.Constants.defaultCornerRadius
         containerView.layer.masksToBounds = true
-        blurView.layer.cornerRadius = 16.0
+        blurView.layer.cornerRadius = Styles.Constants.defaultCornerRadius
         blurView.layer.masksToBounds = true
-        containerView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
-        containerView.layer.borderWidth = 1.0
-        removeButton.tintColor = UIColor(named: "AccentColor")
+        containerView.layer.borderColor = Styles.Colors.accentColor.cgColor
+        containerView.layer.borderWidth = Styles.Constants.userBorderWidth
+        removeButton.tintColor = Styles.Colors.accentColor
+    }
+    
+    private func showImage(image: UIImage?, in imageView: UIImageView) {
+        imageView.alpha = 0.0
+        imageView.image = image
+        let animator = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+            imageView.alpha = 1.0
+        })
+        animator.startAnimation()
     }
 }
 

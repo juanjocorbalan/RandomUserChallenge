@@ -26,7 +26,7 @@
                                     <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RandomUserCell" id="y0y-rE-xsa" customClass="RandomUserCellView" customModule="RandomUserChallenge" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RandomUserCellView" id="y0y-rE-xsa" customClass="RandomUserCellView" customModule="RandomUserChallenge" customModuleProvider="target">
                                         <rect key="frame" x="107.5" y="16" width="199" height="308"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PhC-65-omA">
@@ -147,7 +147,6 @@
         <!--Random User Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RandomUserDetailViewController" id="BYZ-38-t0r" customClass="RandomUserDetailViewController" customModule="RandomUserChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -260,6 +259,7 @@
                         <outlet property="nameLabel" destination="Vlz-Wk-KtF" id="IuY-oS-Pc0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="905.79710144927549" y="135.9375"/>
         </scene>

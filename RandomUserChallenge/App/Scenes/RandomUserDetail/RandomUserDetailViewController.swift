@@ -14,6 +14,7 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
     private let disposeBag = DisposeBag()
     
     var viewModel: RandomUserDetailViewModel!
+    var imageFetcher: ImageFetcher!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -45,32 +46,42 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         descriptionTextView.font = UIFont.preferredFont(forTextStyle: .body)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2.0
         avatarImageView.layer.masksToBounds = true
-        avatarImageView.layer.borderWidth = 3.0
-        avatarImageView.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
+        avatarImageView.layer.borderWidth = Styles.Constants.avatarBorderWidth
+        avatarImageView.layer.borderColor = Styles.Colors.accentColor.cgColor
         descriptionTextView.textContainerInset = .zero
-        blurView1.layer.cornerRadius = 16.0
+        blurView1.layer.cornerRadius = Styles.Constants.defaultCornerRadius
         blurView1.layer.masksToBounds = true
-        blurView2.layer.cornerRadius = 16.0
+        blurView1.layer.borderWidth = Styles.Constants.userBorderWidth
+        blurView1.layer.borderColor = Styles.Colors.accentColor.cgColor
+        blurView2.layer.cornerRadius = Styles.Constants.defaultCornerRadius
         blurView2.layer.masksToBounds = true
+        blurView2.layer.borderWidth = Styles.Constants.userBorderWidth
+        blurView2.layer.borderColor = Styles.Colors.accentColor.cgColor
         backgroundImageView.alpha = 0.5
     }
     
     private func setupBindings() {
         
         viewModel.avatar
-            .filter { $0 != nil }
-            .subscribe(onNext: { url in
-                self.avatarImageView.with(url: url!)
+            .filter { $0.0 != nil }
+            .flatMap { avatarData  in
+                ImageFetcher.shared.fetchImage(from: avatarData.0!, for: avatarData.1)
+            }
+            .subscribe(onNext: { image in
+                self.showImage(image: image, in: self.avatarImageView)
             })
             .disposed(by: disposeBag)
         
         viewModel.background
-            .filter { $0 != nil }
-            .subscribe(onNext: { url in
-                self.backgroundImageView.with(url: url!)
+            .filter { $0.0 != nil }
+            .flatMap { backgroundData  in
+                ImageFetcher.shared.fetchImage(from: backgroundData.0!, for: backgroundData.1)
+            }
+            .subscribe(onNext: { image in
+                self.showImage(image: image, in: self.backgroundImageView)
             })
             .disposed(by: disposeBag)
-        
+
         viewModel.name
             .bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
@@ -90,6 +101,15 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         viewModel.description
             .bind(to: descriptionTextView.rx.text)
             .disposed(by: disposeBag)
+    }
+    
+    private func showImage(image: UIImage?, in imageView: UIImageView) {
+        imageView.alpha = 0.0
+        imageView.image = image
+        let animator = UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+            imageView.alpha = 1.0
+        })
+        animator.startAnimation()
     }
 }
 

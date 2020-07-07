@@ -33,9 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupAppearance() {
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor(named: "AccentColor")
+        navigationBarAppearace.tintColor = Styles.Colors.accentColor
         navigationBarAppearace.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "AccentColor") ?? UIColor.label
+            NSAttributedString.Key.foregroundColor: Styles.Colors.accentColor
         ]
+        UIActivityIndicatorView.appearance().color = Styles.Colors.accentColor
+        UIRefreshControl.appearance().tintColor = Styles.Colors.accentColor
     }
 }

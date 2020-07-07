@@ -43,7 +43,7 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
                     self?.refreshControl.endRefreshing()
                 }
             })
-            .bind(to: collectionView.rx.items(cellIdentifier: "RandomUserCell", cellType: RandomUserCellView.self)) { (index, cellViewModel, cell) in
+            .bind(to: collectionView.rx.items(cellIdentifier: RandomUserCellView.storyboardID, cellType: RandomUserCellView.self)) { (index, cellViewModel, cell) in
                 
                 cellViewModel.removeDidTap
                     .map { IndexPath(item: index, section: 0) }
@@ -88,7 +88,7 @@ extension RandomUserListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let columnWidth = (collectionView.frame.size.width - 48) / 2.0
-        return CGSize(width: columnWidth, height: columnWidth * 1.55)
+        let columnWidth = (collectionView.frame.size.width - Styles.Constants.defaultCornerRadius * 3.0) / 2.0
+        return CGSize(width: columnWidth, height: columnWidth * Styles.Constants.userAspectRatio)
     }
 }

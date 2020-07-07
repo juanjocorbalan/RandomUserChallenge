@@ -27,6 +27,7 @@ class DependencyContainer {
     func resolve(user: RandomUser) -> RandomUserDetailViewController {
         let viewController = RandomUserDetailViewController.initFromStoryboard()
         viewController.viewModel = resolve(user: user)
+        viewController.imageFetcher = resolve()
         return viewController
     }
     
@@ -64,5 +65,9 @@ class DependencyContainer {
     
     func resolve() -> CoreDataClient<RandomUser> {
         return CoreDataClient<RandomUser>()
+    }
+    
+    func resolve() -> ImageFetcher {
+        return ImageFetcher.shared
     }
 }
