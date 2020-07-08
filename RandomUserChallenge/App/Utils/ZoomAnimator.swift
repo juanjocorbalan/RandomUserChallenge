@@ -38,19 +38,12 @@ class ZoomAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
     
     toView.transform = scaleTransform
-    toView.center = CGPoint(
-      x: initialFrame.midX,
-      y: initialFrame.midY)
+    toView.center = CGPoint(x: initialFrame.midX, y: initialFrame.midY)
 
     containerView.addSubview(toView)
     containerView.bringSubviewToFront(toView)
     
-    UIView.animate(
-      withDuration: duration,
-      delay: 0.0,
-      usingSpringWithDamping: 0.5,
-      initialSpringVelocity: 0.2,
-      animations: {
+    UIView.animate(withDuration: duration, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, animations: {
         toView.transform = .identity
         toView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
     }, completion: { _ in

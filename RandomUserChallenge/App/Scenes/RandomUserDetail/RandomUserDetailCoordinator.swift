@@ -35,15 +35,11 @@ class RandomUserDetailCoordinator: Coordinator<Void> {
         
         return Observable.merge(viewController.rx.deallocated,
                                 viewController.viewModel.didClose
-                                    .do(onNext: { _ in
-                                        self.navigationController.dismiss(animated: true)
+                                    .do(onNext: { [weak self]_ in
+                                        self?.navigationController.dismiss(animated: true)
                                     })
                 )
                 .take(1)
         
-    }
-    
-    deinit {
-        print("deinit")
     }
 }

@@ -64,21 +64,25 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         
         viewModel.avatar
             .filter { $0.0 != nil }
-            .flatMap { avatarData  in
-                ImageFetcher.shared.fetchImage(from: avatarData.0!, for: avatarData.1)
+            .flatMap { [weak self] avatarData -> Observable<UIImage?> in
+                guard let strongSelf = self else { return Observable.empty() }
+                return strongSelf.imageFetcher.fetchImage(from: avatarData.0!, for: avatarData.1)
             }
-            .subscribe(onNext: { image in
-                self.showImage(image: image, in: self.avatarImageView)
+            .subscribe(onNext: { [weak self] image in
+                guard let strongSelf = self else { return }
+                strongSelf.showImage(image: image, in: strongSelf.avatarImageView)
             })
             .disposed(by: disposeBag)
         
         viewModel.background
             .filter { $0.0 != nil }
-            .flatMap { backgroundData  in
-                ImageFetcher.shared.fetchImage(from: backgroundData.0!, for: backgroundData.1)
+            .flatMap { [weak self] backgroundData -> Observable<UIImage?> in
+                guard let strongSelf = self else { return Observable.empty() }
+                return strongSelf.imageFetcher.fetchImage(from: backgroundData.0!, for: backgroundData.1)
             }
-            .subscribe(onNext: { image in
-                self.showImage(image: image, in: self.backgroundImageView)
+            .subscribe(onNext: { [weak self] image in
+                guard let strongSelf = self else { return }
+                strongSelf.showImage(image: image, in: strongSelf.backgroundImageView)
             })
             .disposed(by: disposeBag)
 
@@ -102,7 +106,7 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
             .bind(to: descriptionTextView.rx.text)
             .disposed(by: disposeBag)
         
-        closeItem.rx.tap.debug()
+        closeItem.rx.tap
             .bind(to: viewModel.close)
             .disposed(by: disposeBag)
     }

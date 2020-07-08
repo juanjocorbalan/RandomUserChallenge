@@ -27,6 +27,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     //MARK: - Get
     
     func getAll() -> Observable<[T]> {
+   
         request.predicate = nil
         
         return Observable.create { [weak self] observer in
@@ -41,8 +42,8 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
                 observer.onNext(results.toDomain())
                 observer.onCompleted()
                 
-            } catch(let error) {
-                observer.onError(error)
+            } catch {
+                observer.onError(CacheError.error)
             }
             
             return Disposables.create()
@@ -112,7 +113,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     
     //MARK: - Partial Update
     
-    func update(element: T, with values: [String : Any]) -> Observable<Void> {
+    func update<V>(key: String, value: V, with values: [String: Any]) -> Observable<Void> {
         
         return Observable.create { [weak self] observer in
             
@@ -121,7 +122,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
                 return Disposables.create()
             }
             
-            if let object = strongSelf.find(key: RandomUserCache.keys.id, value: element.id)?.first {
+            if let object = strongSelf.find(key: key, value: value)?.first {
                 values.forEach { (key, value) in
                     object.setValue(value, forKey: key)
                 }
@@ -153,21 +154,15 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
                 return Disposables.create()
             }
             
-            strongSelf.request.predicate = NSPredicate(format: "\(key) == %@", value as! CVarArg)
+            if let object = strongSelf.find(key: key, value: value)?.first {
+                strongSelf.context.delete(object)
+            }
             
             do {
-                let results = try strongSelf.context.fetch(strongSelf.request)
+                try strongSelf.context.save()
                 
-                if let element = results.first {
-                    strongSelf.context.delete(element)
-                    
-                    try strongSelf.context.save()
-                    
-                    observer.onNext(())
-                    observer.onCompleted()
-                } else {
-                    observer.onError(CacheError.notFound)
-                }
+                observer.onNext(())
+                observer.onCompleted()
             } catch {
                 observer.onError(CacheError.error)
             }

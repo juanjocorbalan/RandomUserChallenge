@@ -11,5 +11,5 @@ import RxSwift
 
 protocol RandomUserRepositoryType {
     func getUsers() -> Observable<[RandomUser]>
-    func deleteUser(_ user: RandomUser) -> Observable<Void>
+    func deleteUserBy(id: String) -> Observable<Void>
 }

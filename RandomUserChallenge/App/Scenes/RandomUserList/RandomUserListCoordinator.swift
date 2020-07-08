@@ -26,8 +26,9 @@ class RandomUserListCoordinator: Coordinator<Void> {
         let navigationController = UINavigationController(rootViewController: viewController)
         
         viewController.viewModel.showUser
-            .flatMap { user -> Observable<Void> in
-                self.showUser(user, in: navigationController)
+            .flatMap { [weak self] user -> Observable<Void> in
+                guard let strongSelf = self else { return Observable.empty() }
+                return strongSelf.showUser(user, in: navigationController)
             }
             .subscribe()
             .disposed(by: disposeBag)

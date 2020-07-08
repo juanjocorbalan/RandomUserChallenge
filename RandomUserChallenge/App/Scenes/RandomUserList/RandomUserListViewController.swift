@@ -21,6 +21,36 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
     private let refreshControl = UIRefreshControl()
     private var selectedUserFrame: CGRect?
 
+    // MARK: - DiffableDataSource
+    
+    fileprivate enum Section: CaseIterable {
+        case main
+    }
+
+    fileprivate typealias DataSource = UICollectionViewDiffableDataSource<Section, RandomUserCellViewModel>
+    fileprivate typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RandomUserCellViewModel>
+
+    fileprivate lazy var dataSource = {
+        return DataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, cellViewModel) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RandomUserCellView.storyboardID, for: indexPath) as? RandomUserCellView
+                else { return UICollectionViewCell() }
+            cellViewModel.removeDidTap
+                .bind(to: self.viewModel.userDeleted)
+                .disposed(by: cell.disposeBag)
+            cell.setup(with: cellViewModel)
+            return cell
+        })
+    }()
+    
+    fileprivate func createSnapshot(with users: [RandomUserCellViewModel]) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(users)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    // MARK: - Setup
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,19 +74,14 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
                     self?.refreshControl.endRefreshing()
                 }
             })
-            .bind(to: collectionView.rx.items(cellIdentifier: RandomUserCellView.storyboardID, cellType: RandomUserCellView.self)) { (index, cellViewModel, cell) in
-                
-                cellViewModel.removeDidTap
-                    .map { IndexPath(item: index, section: 0) }
-                    .bind(to: self.viewModel.userDeleted)
-                    .disposed(by: cell.disposeBag)
-
-                cell.setup(with: cellViewModel)
-            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] users in
+                guard let strongSelf = self else { return }
+                strongSelf.createSnapshot(with: users)
+            })
             .disposed(by: disposeBag)
 
         viewModel.errorMessage
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.refreshControl.endRefreshing()
                 self?.showError(message: $0)

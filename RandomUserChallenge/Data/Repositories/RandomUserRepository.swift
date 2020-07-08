@@ -39,7 +39,7 @@ class RandomUserRepository: RandomUserRepositoryType {
             }
     }
 
-    func deleteUser(_ user: RandomUser) -> Observable<Void> {
-        return cacheDataSource.update(user: user, with: [RandomUserCache.keys.isRemoved : true])
+    func deleteUserBy(id: String) -> Observable<Void> {
+        return cacheDataSource.update(by: id, with: [RandomUserCache.keys.isRemoved : true])
     }
 }

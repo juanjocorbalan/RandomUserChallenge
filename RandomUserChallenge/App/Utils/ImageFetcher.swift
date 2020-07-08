@@ -29,13 +29,18 @@ final class ImageFetcher {
     func fetchImage(from url: URL, for id: String) -> Observable<UIImage?> {
         
         return Observable.create { [weak self] observer in
+            guard let strongSelf = self else {
+                observer.onNext(nil)
+                observer.onCompleted()
+                return Disposables.create()
+            }
             
-            if let image = self?.cache[NSString(string: url.absoluteString + id)] {
+            if let image = strongSelf.cache[NSString(string: url.absoluteString + id)] {
                 observer.onNext(image)
                 observer.onCompleted()
             }
 
-            let task = URLSession.shared.dataTask(with: url as URL, completionHandler: { (data, response, error) -> Void in
+            let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
                 guard let data = data, error == nil else {
                     observer.onNext(nil)
                     observer.onCompleted()
@@ -48,7 +53,8 @@ final class ImageFetcher {
             return Disposables.create(with: { task.cancel() })
         }
         .do(onNext: { [weak self] image in
-            self?.cache[NSString(string: url.absoluteString + id)] = image
+            guard let strongSelf = self else { return }
+            strongSelf.cache[NSString(string: url.absoluteString + id)] = image
         })
         .subscribeOn(OperationQueueScheduler.init(operationQueue: backgroundQueue))
         .observeOn(MainScheduler.instance)

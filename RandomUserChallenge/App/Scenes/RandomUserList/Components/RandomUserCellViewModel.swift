@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-struct RandomUserCellViewModel {
+struct RandomUserCellViewModel: Hashable {
     
     // MARK: - Inputs
     let removeSelected: AnyObserver<Void>
@@ -19,14 +19,30 @@ struct RandomUserCellViewModel {
     let city: Observable<String>
     let avatar: Observable<(URL?, String)>
     let background: Observable<(URL?, String)>
-    let removeDidTap: Observable<Void>
+    let removeDidTap: Observable<RandomUser>
+    
+    private let user: RandomUser
+    
+    var id: String {
+        self.user.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
+    }
+    
+    static func == (lhs: RandomUserCellViewModel, rhs: RandomUserCellViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
     
     // MARK: - Init
 
     init(user: RandomUser) {
+        self.user = user
+        
         let removeSubject = PublishSubject<Void>()
         self.removeSelected = removeSubject.asObserver()
-        self.removeDidTap = removeSubject.asObservable()
+        self.removeDidTap = removeSubject.asObservable().map { user }
 
         self.name = Observable.of("\(user.firstName) \(user.lastName)")
         self.city =  Observable.of(user.city)

@@ -42,26 +42,28 @@ class RandomUserCellView: UICollectionViewCell {
         setupUI()
     }
     
-    func setup(with viewModel: RandomUserCellViewModel, imageFecther: ImageFetcher = ImageFetcher.shared) {
+    func setup(with viewModel: RandomUserCellViewModel, imageFetcher: ImageFetcher = ImageFetcher.shared) {
         setupUI()
         
         viewModel.avatar
             .filter { $0.0 != nil }
             .flatMap { avatarData  in
-                ImageFetcher.shared.fetchImage(from: avatarData.0!, for: avatarData.1)
+                imageFetcher.fetchImage(from: avatarData.0!, for: avatarData.1)
             }
-            .subscribe(onNext: { image in
-                self.showImage(image: image, in: self.avatarImageView)
+            .subscribe(onNext: { [weak self] image in
+                guard let strongSelf = self else { return }
+                strongSelf.showImage(image: image, in: strongSelf.avatarImageView)
             })
             .disposed(by: disposeBag)
         
         viewModel.background
             .filter { $0.0 != nil }
             .flatMap { backgroundData  in
-                ImageFetcher.shared.fetchImage(from: backgroundData.0!, for: backgroundData.1)
+                imageFetcher.fetchImage(from: backgroundData.0!, for: backgroundData.1)
             }
-            .subscribe(onNext: { image in
-                self.showImage(image: image, in: self.backgroundImageView)
+            .subscribe(onNext: { [weak self] image in
+                guard let strongSelf = self else { return }
+                strongSelf.showImage(image: image, in: strongSelf.backgroundImageView)
             })
             .disposed(by: disposeBag)
         
