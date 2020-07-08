@@ -23,8 +23,21 @@ final class CoreDataStack {
         persistentContainer.viewContext
     }
     
-    private init() {
-        self.persistentContainer = NSPersistentContainer(name: "RandomUserChallenge")
+    init(model: String = "RandomUserChallenge", url: URL? = nil, inMemory: Bool = false) {
+        if let url = url {
+            let objectModel = NSManagedObjectModel(contentsOf: url)!
+            self.persistentContainer = NSPersistentContainer(name: model, managedObjectModel: objectModel)
+        } else {
+            self.persistentContainer = NSPersistentContainer(name: model)
+        }
+
+        if inMemory {
+            let description = NSPersistentStoreDescription()
+            description.type = NSInMemoryStoreType
+            description.shouldAddStoreAsynchronously = false
+            self.persistentContainer.persistentStoreDescriptions = [description]
+        }
+     
         self.persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

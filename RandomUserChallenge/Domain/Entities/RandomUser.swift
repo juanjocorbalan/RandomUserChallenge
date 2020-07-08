@@ -9,14 +9,14 @@
 import Foundation
 
 struct RandomUser: Identifiable {
-    let id: String
-    let firstName: String
-    let lastName: String
-    let email: String
-    let gender: String
-    let ipAddress: String
-    let avatar: String
-    let city: String
-    let background: String
-    let description: String
+    var id: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    var gender: String
+    var ipAddress: String
+    var avatar: String
+    var city: String
+    var background: String
+    var description: String
 }
