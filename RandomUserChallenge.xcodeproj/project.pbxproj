@@ -42,6 +42,9 @@
 		DFAE778024B609CF00D275D4 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */; };
 		DFAE778524B60AA500D275D4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778424B60AA500D275D4 /* Utils.swift */; };
 		DFAE778924B6144D00D275D4 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778724B6144D00D275D4 /* TestModel.xcdatamodeld */; };
+		DFAE778B24B6231A00D275D4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778A24B6231A00D275D4 /* Helpers.swift */; };
+		DFAE779124B6266000D275D4 /* APiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE779024B6266000D275D4 /* APiClientTests.swift */; };
+		DFAE779324B62A4200D275D4 /* randomUsers.json in Resources */ = {isa = PBXBuildFile; fileRef = DFAE778D24B6235A00D275D4 /* randomUsers.json */; };
 		DFB5BE5A24B5099C00E93495 /* ZoomAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB5BE5924B5099C00E93495 /* ZoomAnimator.swift */; };
 		DFD3270A24B35BFF00D4C82A /* RandomUserRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */; };
 		DFD3270C24B35C9200D4C82A /* RandomUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */; };
@@ -111,6 +114,9 @@
 		DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		DFAE778424B60AA500D275D4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		DFAE778824B6144D00D275D4 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
+		DFAE778A24B6231A00D275D4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		DFAE778D24B6235A00D275D4 /* randomUsers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = randomUsers.json; sourceTree = "<group>"; };
+		DFAE779024B6266000D275D4 /* APiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APiClientTests.swift; sourceTree = "<group>"; };
 		DFB5BE5924B5099C00E93495 /* ZoomAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimator.swift; sourceTree = "<group>"; };
 		DFD3270924B35BFF00D4C82A /* RandomUserRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepositoryType.swift; sourceTree = "<group>"; };
 		DFD3270B24B35C9200D4C82A /* RandomUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserRepository.swift; sourceTree = "<group>"; };
@@ -289,7 +295,7 @@
 				DFAE777E24B609AD00D275D4 /* App */,
 				DFAE777C24B6099E00D275D4 /* Data */,
 				DFAE777D24B609A800D275D4 /* Domain */,
-				DFAE777B24B6098400D275D4 /* resources */,
+				DFAE777B24B6098400D275D4 /* Resources */,
 				DF6E286624B32AD000C6EDE2 /* Info.plist */,
 			);
 			path = RandomUserChallengeTests;
@@ -397,21 +403,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		DFAE777B24B6098400D275D4 /* resources */ = {
+		DFAE777B24B6098400D275D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DFAE778C24B6233F00D275D4 /* json */,
 				DFAE778724B6144D00D275D4 /* TestModel.xcdatamodeld */,
 				DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */,
 				DFAE778424B60AA500D275D4 /* Utils.swift */,
+				DFAE778A24B6231A00D275D4 /* Helpers.swift */,
 			);
-			path = resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DFAE777C24B6099E00D275D4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DFAE778F24B6263300D275D4 /* Clients */,
 				DFAE778624B60E1B00D275D4 /* DataSources */,
-				DF6E286424B32AD000C6EDE2 /* RandomUserCacheDataSourceTests.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -433,8 +441,25 @@
 		DFAE778624B60E1B00D275D4 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				DF6E286424B32AD000C6EDE2 /* RandomUserCacheDataSourceTests.swift */,
 			);
 			path = DataSources;
+			sourceTree = "<group>";
+		};
+		DFAE778C24B6233F00D275D4 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				DFAE778D24B6235A00D275D4 /* randomUsers.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		DFAE778F24B6263300D275D4 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				DFAE779024B6266000D275D4 /* APiClientTests.swift */,
+			);
+			path = Clients;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAE779324B62A4200D275D4 /* randomUsers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,9 +643,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAE779124B6266000D275D4 /* APiClientTests.swift in Sources */,
 				DF6E286524B32AD000C6EDE2 /* RandomUserCacheDataSourceTests.swift in Sources */,
 				DFAE778024B609CF00D275D4 /* TestingAppDelegate.swift in Sources */,
 				DFAE778524B60AA500D275D4 /* Utils.swift in Sources */,
+				DFAE778B24B6231A00D275D4 /* Helpers.swift in Sources */,
 				DFAE778924B6144D00D275D4 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

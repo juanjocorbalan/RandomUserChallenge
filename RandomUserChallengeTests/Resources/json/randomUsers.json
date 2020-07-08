@@ -1,0 +1,26 @@
+[
+  {
+    "id": "6161739c-1335-43e3-945b-e9c32e25e4f1",
+    "first_name": "Giffard",
+    "last_name": "Giacomuzzi",
+    "email": "ggiacomuzzi0@gov.uk",
+    "gender": "Male",
+    "ip_address": "174.193.154.100",
+    "avatar": "https://robohash.org/evenietundehic.png?size=50x50&set=set1",
+    "city": "La Esperanza",
+    "background": "https://source.unsplash.com/random",
+    "description": "In hac habitasse platea dictumst."
+  },
+  {
+    "id": "01149269-63a4-47ea-8418-480a3814da8a",
+    "first_name": "Tades",
+    "last_name": "Placstone",
+    "email": "tplacstone1@weather.com",
+    "gender": "Male",
+    "ip_address": "68.41.200.50",
+    "avatar": "https://robohash.org/ipsaquivoluptas.jpg?size=50x50&set=set1",
+    "city": "Kol’chugino",
+    "background": "https://source.unsplash.com/random",
+    "description": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
+  }
+]
