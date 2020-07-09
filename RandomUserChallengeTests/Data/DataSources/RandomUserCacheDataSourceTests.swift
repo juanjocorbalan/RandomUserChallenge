@@ -14,7 +14,7 @@ class RandomUserCacheDataSourceTests: XCTestCase {
     
     private var disposeBag = DisposeBag()
 
-    var sut = RandomUserCacheDataSource<MockCoreDataClient>(cacheClient: mockCoreDataClient)
+    var sut = RandomUserCacheDataSource<CoreDataClient>(cacheClient: mockDependencyContainer.resolve())
     
     override func setUp() {
         super.setUp()
@@ -23,7 +23,7 @@ class RandomUserCacheDataSourceTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
-        mockCoreDataClient.deleteAll().subscribe().disposed(by: disposeBag)
+        mockDependencyContainer.reset()
     }
 
     func test_getObjectsFromEmptyCache_ShouldCompleteWithoutValue() {

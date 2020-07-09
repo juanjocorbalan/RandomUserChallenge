@@ -12,6 +12,10 @@
 		DF03F9F824B331ED00F5444C /* CDRandomUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9F724B331ED00F5444C /* CDRandomUser.swift */; };
 		DF03F9FA24B3320500F5444C /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9F924B3320500F5444C /* Convertible.swift */; };
 		DF03F9FC24B3326100F5444C /* RandomUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */; };
+		DF059A4A24B644740051FCD8 /* CoreDataClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF059A4924B644740051FCD8 /* CoreDataClientTests.swift */; };
+		DF059A5424B64DAD0051FCD8 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5324B64DAD0051FCD8 /* RxBlocking */; };
+		DF059A5624B64DAD0051FCD8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5524B64DAD0051FCD8 /* RxSwift */; };
+		DF059A5824B64DAD0051FCD8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5724B64DAD0051FCD8 /* RxCocoa */; };
 		DF40BAE524B4CACF0069B7FD /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF40BAE424B4CACF0069B7FD /* Styles.swift */; };
 		DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */; };
 		DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */; };
@@ -30,18 +34,16 @@
 		DF82DB2E24B3572A002B2BE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82DB2D24B3572A002B2BE6 /* Constants.swift */; };
 		DF97D19224B36B6100C76C6C /* RandomUserListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D19124B36B6100C76C6C /* RandomUserListCoordinator.swift */; };
 		DF97D19424B36B7500C76C6C /* RandomUserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D19324B36B7500C76C6C /* RandomUserDetailCoordinator.swift */; };
-		DF97D19724B36DAA00C76C6C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF97D19624B36DAA00C76C6C /* RxSwift */; };
-		DF97D19924B36DAA00C76C6C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DF97D19824B36DAA00C76C6C /* RxCocoa */; };
 		DF97D19B24B36E7B00C76C6C /* RandomUserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D19A24B36E7B00C76C6C /* RandomUserListViewModel.swift */; };
 		DF97D19D24B36E8B00C76C6C /* RandomUserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D19C24B36E8B00C76C6C /* RandomUserDetailViewModel.swift */; };
 		DF97D1A224B38C4700C76C6C /* RandomUserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D1A124B38C4700C76C6C /* RandomUserCellViewModel.swift */; };
 		DF97D1A424B38C5A00C76C6C /* RandomUserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF97D1A324B38C5A00C76C6C /* RandomUserCellView.swift */; };
+		DF9AB00E24B680C8002D1728 /* GetUsersUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9AB00D24B680C8002D1728 /* GetUsersUseCaseTests.swift */; };
 		DFAABC0824B4B35F00578906 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAABC0724B4B35F00578906 /* ImageCache.swift */; };
 		DFAABC0A24B4B5A700578906 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAABC0924B4B5A700578906 /* ImageFetcher.swift */; };
 		DFAE777A24B6093800D275D4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE777924B6093800D275D4 /* main.swift */; };
 		DFAE778024B609CF00D275D4 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */; };
 		DFAE778524B60AA500D275D4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778424B60AA500D275D4 /* Utils.swift */; };
-		DFAE778924B6144D00D275D4 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778724B6144D00D275D4 /* TestModel.xcdatamodeld */; };
 		DFAE778B24B6231A00D275D4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE778A24B6231A00D275D4 /* Helpers.swift */; };
 		DFAE779124B6266000D275D4 /* APiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAE779024B6266000D275D4 /* APiClientTests.swift */; };
 		DFAE779324B62A4200D275D4 /* randomUsers.json in Resources */ = {isa = PBXBuildFile; fileRef = DFAE778D24B6235A00D275D4 /* randomUsers.json */; };
@@ -80,6 +82,7 @@
 		DF03F9F724B331ED00F5444C /* CDRandomUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRandomUser.swift; sourceTree = "<group>"; };
 		DF03F9F924B3320500F5444C /* Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDTO.swift; sourceTree = "<group>"; };
+		DF059A4924B644740051FCD8 /* CoreDataClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClientTests.swift; sourceTree = "<group>"; };
 		DF40BAE424B4CACF0069B7FD /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUserChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,12 +111,12 @@
 		DF97D19C24B36E8B00C76C6C /* RandomUserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDetailViewModel.swift; sourceTree = "<group>"; };
 		DF97D1A124B38C4700C76C6C /* RandomUserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCellViewModel.swift; sourceTree = "<group>"; };
 		DF97D1A324B38C5A00C76C6C /* RandomUserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCellView.swift; sourceTree = "<group>"; };
+		DF9AB00D24B680C8002D1728 /* GetUsersUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUsersUseCaseTests.swift; sourceTree = "<group>"; };
 		DFAABC0724B4B35F00578906 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		DFAABC0924B4B5A700578906 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		DFAE777924B6093800D275D4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		DFAE778424B60AA500D275D4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		DFAE778824B6144D00D275D4 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
 		DFAE778A24B6231A00D275D4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		DFAE778D24B6235A00D275D4 /* randomUsers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = randomUsers.json; sourceTree = "<group>"; };
 		DFAE779024B6266000D275D4 /* APiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APiClientTests.swift; sourceTree = "<group>"; };
@@ -134,8 +137,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF97D19924B36DAA00C76C6C /* RxCocoa in Frameworks */,
-				DF97D19724B36DAA00C76C6C /* RxSwift in Frameworks */,
+				DF059A5824B64DAD0051FCD8 /* RxCocoa in Frameworks */,
+				DF059A5624B64DAD0051FCD8 /* RxSwift in Frameworks */,
+				DF059A5424B64DAD0051FCD8 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +396,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		DF9AB00C24B680AF002D1728 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				DF9AB00D24B680C8002D1728 /* GetUsersUseCaseTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		DFAABC0B24B4B5B000578906 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,7 +419,6 @@
 			isa = PBXGroup;
 			children = (
 				DFAE778C24B6233F00D275D4 /* json */,
-				DFAE778724B6144D00D275D4 /* TestModel.xcdatamodeld */,
 				DFAE777F24B609CF00D275D4 /* TestingAppDelegate.swift */,
 				DFAE778424B60AA500D275D4 /* Utils.swift */,
 				DFAE778A24B6231A00D275D4 /* Helpers.swift */,
@@ -427,6 +438,7 @@
 		DFAE777D24B609A800D275D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DF9AB00C24B680AF002D1728 /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -458,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				DFAE779024B6266000D275D4 /* APiClientTests.swift */,
+				DF059A4924B644740051FCD8 /* CoreDataClientTests.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -479,8 +492,9 @@
 			);
 			name = RandomUserChallenge;
 			packageProductDependencies = (
-				DF97D19624B36DAA00C76C6C /* RxSwift */,
-				DF97D19824B36DAA00C76C6C /* RxCocoa */,
+				DF059A5324B64DAD0051FCD8 /* RxBlocking */,
+				DF059A5524B64DAD0051FCD8 /* RxSwift */,
+				DF059A5724B64DAD0051FCD8 /* RxCocoa */,
 			);
 			productName = RandomUserChallenge;
 			productReference = DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */;
@@ -500,6 +514,8 @@
 				DF6E286224B32AD000C6EDE2 /* PBXTargetDependency */,
 			);
 			name = RandomUserChallengeTests;
+			packageProductDependencies = (
+			);
 			productName = RandomUserChallengeTests;
 			productReference = DF6E286024B32AD000C6EDE2 /* RandomUserChallengeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -555,7 +571,7 @@
 			);
 			mainGroup = DF6E283E24B32ACF00C6EDE2;
 			packageReferences = (
-				DF97D19524B36DAA00C76C6C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				DF059A5224B64DAD0051FCD8 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = DF6E284824B32ACF00C6EDE2 /* Products */;
 			projectDirPath = "";
@@ -646,9 +662,10 @@
 				DFAE779124B6266000D275D4 /* APiClientTests.swift in Sources */,
 				DF6E286524B32AD000C6EDE2 /* RandomUserCacheDataSourceTests.swift in Sources */,
 				DFAE778024B609CF00D275D4 /* TestingAppDelegate.swift in Sources */,
+				DF059A4A24B644740051FCD8 /* CoreDataClientTests.swift in Sources */,
 				DFAE778524B60AA500D275D4 /* Utils.swift in Sources */,
 				DFAE778B24B6231A00D275D4 /* Helpers.swift in Sources */,
-				DFAE778924B6144D00D275D4 /* TestModel.xcdatamodeld in Sources */,
+				DF9AB00E24B680C8002D1728 /* GetUsersUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,7 +988,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DF97D19524B36DAA00C76C6C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		DF059A5224B64DAD0051FCD8 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
@@ -982,14 +999,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DF97D19624B36DAA00C76C6C /* RxSwift */ = {
+		DF059A5324B64DAD0051FCD8 /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DF97D19524B36DAA00C76C6C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = DF059A5224B64DAD0051FCD8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		DF059A5524B64DAD0051FCD8 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DF059A5224B64DAD0051FCD8 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
 		};
-		DF97D19824B36DAA00C76C6C /* RxCocoa */ = {
+		DF059A5724B64DAD0051FCD8 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DF97D19524B36DAA00C76C6C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = DF059A5224B64DAD0051FCD8 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
@@ -1002,16 +1024,6 @@
 			);
 			currentVersion = DF6E285424B32ACF00C6EDE2 /* RandomUserChallenge.xcdatamodel */;
 			path = RandomUserChallenge.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		DFAE778724B6144D00D275D4 /* TestModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DFAE778824B6144D00D275D4 /* TestModel.xcdatamodel */,
-			);
-			currentVersion = DFAE778824B6144D00D275D4 /* TestModel.xcdatamodel */;
-			path = TestModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

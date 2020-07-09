@@ -19,7 +19,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     
     private var request: NSFetchRequest<T.ManagedEntity>
     
-    init(coreDataStack: CoreDataStack = CoreDataStack.shared) {
+    init(coreDataStack: CoreDataStack) {
         self.stack = coreDataStack
         self.request = T.ManagedEntity.fetchRequest() as! NSFetchRequest<T.ManagedEntity>
     }
@@ -63,7 +63,7 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
                 observer.onNext(results.toDomain())
                 observer.onCompleted()
             } else {
-                observer.onError(CacheError.error)
+                observer.onError(CacheError.notFound)
             }
             
             return Disposables.create()
@@ -173,6 +173,8 @@ class CoreDataClient<T>: CacheClientType where T: DomainToManagedConvertibleEnti
     
     func deleteAll() -> Observable<Void> {
         
+        request.predicate = nil
+
         return Observable.create { [weak self] observer in
             
             guard let strongSelf = self else {

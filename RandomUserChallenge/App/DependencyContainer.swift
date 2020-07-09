@@ -64,7 +64,11 @@ class DependencyContainer {
     }
     
     func resolve() -> CoreDataClient<RandomUser> {
-        return CoreDataClient<RandomUser>()
+        return CoreDataClient<RandomUser>(coreDataStack: resolve())
+    }
+    
+    func resolve() -> CoreDataStack {
+        return CoreDataStack.shared
     }
     
     func resolve() -> ImageFetcher {

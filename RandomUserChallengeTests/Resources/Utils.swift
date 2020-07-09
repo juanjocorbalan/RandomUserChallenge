@@ -11,55 +11,58 @@ import RxSwift
 import CoreData
 @testable import RandomUserChallenge
 
+class MockDependencyContainer: DependencyContainer {
+    
+    var mockCoreDataClient = MockCoreDataClient()
+    
+    var mockApiClient = MockAPIClient()
+    
+    func reset() {
+        mockApiClient.failWithError = false
+        _ = mockDependencyContainer.mockCoreDataClient.deleteAll().subscribeOn(scheduler).toBlocking().materialize()
+    }
+    
+    override func resolve() -> APIClient {
+        return mockApiClient
+    }
+    
+    override func resolve() -> CoreDataClient<RandomUser> {
+        return mockCoreDataClient
+    }
+}
+
 class MockCoreDataClient: CoreDataClient<RandomUser> {
     
     init() {
-        let bundle = Bundle.init(for: MockCoreDataClient.self)
-        let modelURL = bundle.url(forResource: "TestModel", withExtension: "momd")!
-
-        super.init(coreDataStack: CoreDataStack(model: "TestModel", url: modelURL, inMemory: true))
+        super.init(coreDataStack: CoreDataStack(inMemory: true))
     }
 }
 
 class MockAPIClient: APIClient {
     
-    override func execute<R>(_ resource: R) -> Observable<R.ResponseType> where R : ResourceType {
-        guard let results: [RandomUserDTO] = decodeJSONFile(named: "randomUsers")
+    var failWithError = false
+    
+    override func execute<R>(_ resource: R) -> Observable<R.ResponseType> where R: ResourceType {
+        
+        guard !failWithError else { return Observable<R.ResponseType>.error(APIError.serialization) }
+        
+        var stubResponseFileName = ""
+        switch R.ResponseType.self {
+        case is [RandomUserDTO].Type:
+            stubResponseFileName = "randomUsers"
+        default:
+            return Observable<R.ResponseType>.error(APIError.serialization)
+        }
+        guard let results: R.ResponseType = decodeJSONFile(named: stubResponseFileName)
             else { return Observable<R.ResponseType>.error(APIError.serialization) }
-        return Observable.just(results as! R.ResponseType)
+        return Observable.just(results)
     }
 }
 
-class MockRandomUserAPIDataSource: RandomUserAPIDataSource {
-    
-    init() {
-        super.init(apiClient: MockAPIClient())
-    }
-}
+let scheduler = ConcurrentDispatchQueueScheduler(qos: .default)
 
-class MockRandomUserCacheDataSource: RandomUserCacheDataSource<MockCoreDataClient> {
-
-    init() {
-        super.init(cacheClient: MockCoreDataClient())
-    }
-}
-
-class MockRandomUserRepository: RandomUserRepository {
-    
-    init() {
-        super.init(apiDataSource: MockRandomUserAPIDataSource(),
-                   cacheDataSource: MockRandomUserCacheDataSource())
-    }
-}
-
-class MockGetRandomUsersUseCase: GetUsersUseCase {
-    
-    init() {
-        super.init(repository: MockRandomUserRepository())
-    }
-}
-
-let mockCoreDataClient = MockCoreDataClient()
+let mockDependencyContainer = MockDependencyContainer()
 
 let randomUser1 = RandomUser(id: "1", firstName: "name", lastName: "last", email: "email", gender: "gender", ipAddress: "ip", avatar: "", city: "", background: "", description: "")
+
 let randomUser2 = RandomUser(id: "2", firstName: "name", lastName: "last", email: "email", gender: "gender", ipAddress: "ip", avatar: "", city: "", background: "", description: "")
