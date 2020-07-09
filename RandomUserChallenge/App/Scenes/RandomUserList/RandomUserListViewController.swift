@@ -60,6 +60,7 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
     
     private func setupUI() {
         collectionView.refreshControl = refreshControl
+        viewModel.reload.onNext(())
     }
     
     private func setupBindings() {

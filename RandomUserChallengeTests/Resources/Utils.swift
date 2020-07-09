@@ -13,28 +13,23 @@ import CoreData
 
 class MockDependencyContainer: DependencyContainer {
     
-    var mockCoreDataClient = MockCoreDataClient()
+    lazy var objectMoel: NSManagedObjectModel = {
+        let modelURL = Bundle.main.url(forResource: "RandomUserChallenge", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
+    }()
     
     var mockApiClient = MockAPIClient()
     
     func reset() {
         mockApiClient.failWithError = false
-        _ = mockDependencyContainer.mockCoreDataClient.deleteAll().subscribeOn(scheduler).toBlocking().materialize()
     }
     
     override func resolve() -> APIClient {
         return mockApiClient
     }
     
-    override func resolve() -> CoreDataClient<RandomUser> {
-        return mockCoreDataClient
-    }
-}
-
-class MockCoreDataClient: CoreDataClient<RandomUser> {
-    
-    init() {
-        super.init(coreDataStack: CoreDataStack(inMemory: true))
+    override func resolve() -> CoreDataStack {
+        return CoreDataStack(objectModel: mockDependencyContainer.objectMoel, inMemory: true)
     }
 }
 

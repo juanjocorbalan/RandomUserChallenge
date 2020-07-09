@@ -23,12 +23,11 @@ class CoreDataStack {
         persistentContainer.viewContext
     }
     
-    init(model: String = "RandomUserChallenge", url: URL? = nil, inMemory: Bool = false) {
-        if let url = url {
-            let objectModel = NSManagedObjectModel(contentsOf: url)!
-            self.persistentContainer = NSPersistentContainer(name: model, managedObjectModel: objectModel)
+    init(modelName: String = "RandomUserChallenge", objectModel: NSManagedObjectModel? = nil, inMemory: Bool = false) {
+        if let objectModel = objectModel {
+            self.persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: objectModel)
         } else {
-            self.persistentContainer = NSPersistentContainer(name: model)
+            self.persistentContainer = NSPersistentContainer(name: modelName)
         }
 
         if inMemory {

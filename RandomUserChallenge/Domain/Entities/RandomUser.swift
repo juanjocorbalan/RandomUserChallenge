@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RandomUser: Identifiable {
+struct RandomUser: Identifiable, Equatable {
     var id: String
     var firstName: String
     var lastName: String
