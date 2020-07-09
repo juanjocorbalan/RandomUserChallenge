@@ -83,6 +83,7 @@ class RandomUserCellView: UICollectionViewCell {
     
     private func setupUI() {
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.accessibilityIdentifier = "labelUserName"
         cityLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2.0
         avatarImageView.layer.masksToBounds = true

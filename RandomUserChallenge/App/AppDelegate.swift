@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        setupUITestingEnvironment()
+        
         window = UIWindow()
         
         mainCoordinator = dependencies.resolve(window: window!)
@@ -38,5 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         UIActivityIndicatorView.appearance().color = Styles.Colors.accentColor
         UIRefreshControl.appearance().tintColor = Styles.Colors.accentColor
+    }
+    
+    private func setupUITestingEnvironment() {
+        if CommandLine.arguments.contains("-UITests") {
+             dependencies = UITestsDependencyContainer()
+         }
     }
 }

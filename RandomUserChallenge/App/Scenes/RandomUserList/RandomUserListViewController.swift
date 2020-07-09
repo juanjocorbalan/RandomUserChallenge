@@ -38,6 +38,7 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
                 .bind(to: self.viewModel.userDeleted)
                 .disposed(by: cell.disposeBag)
             cell.setup(with: cellViewModel)
+            cell.accessibilityIdentifier = "collectionCellUser"
             return cell
         })
     }()
@@ -61,6 +62,7 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
     private func setupUI() {
         collectionView.refreshControl = refreshControl
         viewModel.reload.onNext(())
+        collectionView.accessibilityIdentifier = "collectionViewUsers"
     }
     
     private func setupBindings() {
