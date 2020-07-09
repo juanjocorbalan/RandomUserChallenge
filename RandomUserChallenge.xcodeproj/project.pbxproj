@@ -16,6 +16,7 @@
 		DF059A5424B64DAD0051FCD8 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5324B64DAD0051FCD8 /* RxBlocking */; };
 		DF059A5624B64DAD0051FCD8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5524B64DAD0051FCD8 /* RxSwift */; };
 		DF059A5824B64DAD0051FCD8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DF059A5724B64DAD0051FCD8 /* RxCocoa */; };
+		DF32438224B76FF50001140A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DF32438124B76FF50001140A /* README.md */; };
 		DF40BAE524B4CACF0069B7FD /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF40BAE424B4CACF0069B7FD /* Styles.swift */; };
 		DF6E284B24B32ACF00C6EDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */; };
 		DF6E284F24B32ACF00C6EDE2 /* RandomUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E284E24B32ACF00C6EDE2 /* RandomUserListViewController.swift */; };
@@ -84,6 +85,7 @@
 		DF03F9F924B3320500F5444C /* Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
 		DF03F9FB24B3326100F5444C /* RandomUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDTO.swift; sourceTree = "<group>"; };
 		DF059A4924B644740051FCD8 /* CoreDataClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClientTests.swift; sourceTree = "<group>"; };
+		DF32438124B76FF50001140A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DF40BAE424B4CACF0069B7FD /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		DF6E284724B32ACF00C6EDE2 /* RandomUserChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomUserChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6E284A24B32ACF00C6EDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		DF6E283E24B32ACF00C6EDE2 = {
 			isa = PBXGroup;
 			children = (
+				DF32438124B76FF50001140A /* README.md */,
 				DF6E284924B32ACF00C6EDE2 /* RandomUserChallenge */,
 				DF6E286324B32AD000C6EDE2 /* RandomUserChallengeTests */,
 				DF6E286E24B32AD000C6EDE2 /* RandomUserChallengeUITests */,
@@ -618,6 +621,7 @@
 			files = (
 				DF6E285A24B32AD000C6EDE2 /* LaunchScreen.storyboard in Resources */,
 				DF6E285724B32AD000C6EDE2 /* Assets.xcassets in Resources */,
+				DF32438224B76FF50001140A /* README.md in Resources */,
 				DF6E285224B32ACF00C6EDE2 /* Main.storyboard in Resources */,
 				DF9AB01B24B71917002D1728 /* randomUsers.json in Resources */,
 			);
