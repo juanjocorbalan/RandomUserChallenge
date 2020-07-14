@@ -48,12 +48,11 @@ This section lists all those noteworthy implementation details, assumptions made
 For the sake of simplicity some concessions and assumptions have been made such as:
 
  - Since there are hardly any localizable elements, no localization has been included.
- 
  - Minimal error management is done, displaying them as a UIAlertController without localization.
  - To avoid complexity in data parsing, it has been assumed that the network response is always complete and without null values.
  - Although in other circumstances view entities would have been created, in this case domain entities are used in the view layer due to the simplicity of the model.
  - Data and Domain are just logical groups within the project, but could have been created as packages to facilitate distribution and reuse.
- - No se ha cubierto con tests toda la implementación. Sólo se incluyen algunos como ejemplo.
+ - The whole app isn't covered by tests. Only a few test are included as sample.
  - The UI tests have simply been outlined. The environment has been configured, allowing detecting the execution of tests and being able to exchange the dependency container for an alternative one prepared for them.
  - I have avoided the inclusion of external libraries for networking, cache and dependency injection, opting for my own simpler implementations and adapted to the specific case.
  - The API response includes for all users the same url as the background image, which gives a random image. To avoid that once a user has been drawn their background image changes, a simple cache has been implemented that indexes them by associating the image with each user (url + id).
