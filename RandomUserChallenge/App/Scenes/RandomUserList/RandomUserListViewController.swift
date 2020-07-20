@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RandomUserListViewController: UIViewController, UIScrollViewDelegate, StoryboardInitializable {
+class RandomUserListViewController: UIViewController, StoryboardInitializable {
     
     var viewModel: RandomUserListViewModel!
     
@@ -108,9 +108,6 @@ class RandomUserListViewController: UIViewController, UIScrollViewDelegate, Stor
                 }
             })
             .bind(to: viewModel.userSelected)
-            .disposed(by: disposeBag)
-        
-        collectionView.rx.setDelegate(self)
             .disposed(by: disposeBag)
     }
 }
