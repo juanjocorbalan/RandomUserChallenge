@@ -20,7 +20,7 @@ class Coordinator<T> {
         fatalError("Start method should be implemented")
     }
 
-    func run<T>(_ coordinator: Coordinator<T>) -> Observable<T> {
+    func run<U>(_ coordinator: Coordinator<U>) -> Observable<U> {
         add(coordinator: coordinator)
         return coordinator.start()
             .do(onNext: { [weak self] _ in
@@ -30,11 +30,11 @@ class Coordinator<T> {
 
     // MARK: - Private methods
     
-    private func add<T>(coordinator: Coordinator<T>) {
+    private func add<U>(coordinator: Coordinator<U>) {
         coordinators[coordinator.identifier] = coordinator
     }
     
-    private func remove<T>(coordinator: Coordinator<T>) {
+    private func remove<U>(coordinator: Coordinator<U>) {
         coordinators[coordinator.identifier] = nil
     }
 }
