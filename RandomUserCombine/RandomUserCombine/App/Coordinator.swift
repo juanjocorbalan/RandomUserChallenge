@@ -18,7 +18,7 @@ class Coordinator<T> {
         fatalError("Start method should be implemented")
     }
 
-    func run<T>(_ coordinator: Coordinator<T>) -> AnyPublisher<T, Never> {
+    func run<U>(_ coordinator: Coordinator<U>) -> AnyPublisher<U, Never> {
         add(coordinator: coordinator)
         return coordinator.start()
             .handleEvents(receiveOutput: { _ in
@@ -28,11 +28,11 @@ class Coordinator<T> {
 
     // MARK: - Private methods
     
-    private func add<T>(coordinator: Coordinator<T>) {
+    private func add<U>(coordinator: Coordinator<U>) {
         coordinators[coordinator.identifier] = coordinator
     }
     
-    private func remove<T>(coordinator: Coordinator<T>) {
+    private func remove<U>(coordinator: Coordinator<U>) {
         
         coordinators[coordinator.identifier] = nil
         

@@ -48,11 +48,11 @@ extension Combine.Publishers {
 
 extension Combine.Publishers.UIControlPublisher {
     
-    private final class Subscription<S: Subscriber, Control: UIControl>: Combine.Subscription where S.Input == Void {
+    private final class Subscription<S: Subscriber, C: UIControl>: Combine.Subscription where S.Input == Void {
         private var subscriber: S?
-        weak private var control: Control?
+        weak private var control: C?
 
-        init(subscriber: S, control: Control, event: UIControl.Event) {
+        init(subscriber: S, control: C, event: UIControl.Event) {
             self.subscriber = subscriber
             self.control = control
             control.addTarget(self, action: #selector(eventHandler), for: event)
@@ -72,13 +72,13 @@ extension Combine.Publishers.UIControlPublisher {
 
 extension Combine.Publishers.TargetActionPublisher {
     
-    private final class Subscription<S: Subscriber, Control: TargetActionConfigurable>: Combine.Subscription where S.Input == Void {
+    private final class Subscription<S: Subscriber, C: TargetActionConfigurable>: Combine.Subscription where S.Input == Void {
         private var subscriber: S?
-        weak private var control: Control?
+        weak private var control: C?
         
         private let action = #selector(actionHandler)
         
-        init(subscriber: S, control: Control) {
+        init(subscriber: S, control: C) {
             self.subscriber = subscriber
             self.control = control
             control.target = self

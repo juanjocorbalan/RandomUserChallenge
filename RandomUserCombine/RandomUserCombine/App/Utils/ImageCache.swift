@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ImageCacheType: class {
+protocol ImageCacheType: AnyObject {
     func image(for key: NSString) -> UIImage?
     func insertImage(_ image: UIImage?, for key: NSString)
     func removeImage(for key: NSString)

@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-protocol TargetActionConfigurable: class {
+protocol TargetActionConfigurable: AnyObject {
     var action: Selector? { get set }
     var target: AnyObject? { get set }
 }
