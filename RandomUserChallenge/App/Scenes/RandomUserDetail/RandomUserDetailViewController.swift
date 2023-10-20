@@ -12,7 +12,7 @@ import RxSwift
 class RandomUserDetailViewController: UIViewController, StoryboardInitializable {
     
     private let disposeBag = DisposeBag()
-    private let closeItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: nil)
+    private let closeItem = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
     
     var viewModel: RandomUserDetailViewModel!
     var imageFetcher: ImageFetcher!
@@ -33,11 +33,6 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         setupBindings()
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setupUI()
-    }
-
     private func setupUI() {
         genderLabel.font = UIFont.preferredFont(forTextStyle: .body)
         cityLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -56,12 +51,18 @@ class RandomUserDetailViewController: UIViewController, StoryboardInitializable 
         blurView2.layer.masksToBounds = true
         blurView2.layer.borderWidth = Styles.Constants.userBorderWidth
         blurView2.layer.borderColor = Styles.Colors.accentColor.cgColor
-        backgroundImageView.alpha = 0.5
+        backgroundImageView.alpha = 0.0
         navigationItem.rightBarButtonItem = closeItem
     }
     
     private func setupBindings() {
         
+        NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification,
+                                               object: nil,
+                                               queue: nil) { [ weak self ] _ in
+            self?.setupUI()
+        }
+
         viewModel.avatar
             .filter { $0.0 != nil }
             .flatMap { [weak self] avatarData -> Observable<UIImage?> in

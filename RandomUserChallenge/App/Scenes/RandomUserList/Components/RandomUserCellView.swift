@@ -25,11 +25,6 @@ class RandomUserCellView: UICollectionViewCell {
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var removeButton: UIButton!
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setupUI()
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
@@ -44,6 +39,12 @@ class RandomUserCellView: UICollectionViewCell {
     
     func setup(with viewModel: RandomUserCellViewModel, imageFetcher: ImageFetcher = ImageFetcher.shared) {
         setupUI()
+        
+        NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification,
+                                               object: nil,
+                                               queue: nil) { [ weak self ] _ in
+            self?.setupUI()
+        }
         
         viewModel.avatar
             .filter { $0.0 != nil }
